@@ -33,7 +33,7 @@ export default defineConfig({
       },
     }),
   ],
-  base:"/",
+  base:"/my-portfolio/",
   define: { 'process.env': {} },
   resolve: {
     alias: {

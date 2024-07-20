@@ -144,7 +144,17 @@
         </v-col>
       </v-row>
 
+      
+    <v-alert
+      border="top"
+      variant="outlined"
+      prominent
+    >
+    <i class="mdi mdi-progress-wrench"></i>
+      my profile page is under development!
+    </v-alert>
     </v-responsive>
+    
   </v-container>
 </template>
 <script lang="ts" setup>

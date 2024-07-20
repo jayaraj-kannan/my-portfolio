@@ -1,0 +1,42 @@
+@font-face {
+    font-family: 'feel-free';
+    src: url('../fonts/Feelfree.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+@font-face {
+    font-family: 'cpc-italic';
+    src: url('../fonts/CourierPrimeCodeItalic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+@font-face {
+    font-family: 'cpc-regular';
+    src: url('../fonts/CourierprimecodeRegular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.app-bar-title {
+    font-family: 'feel-free';
+    font-size: 30px !important;
+    color: #4C4C6D;
+}
+.note-1 {
+    font-family: 'cpc-italic' !important;
+}
+.note-2 {
+    font-family: 'cpc-regular' !important;
+}
+.cus-card{
+    padding: 6px !important;
+    margin: 0 !important;
+}
+.v-chip.v-chip--size-default {
+font-size: 10px !important;
+}

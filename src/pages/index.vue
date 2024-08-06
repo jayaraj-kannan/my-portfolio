@@ -1,9 +1,10 @@
 <template>
-  <HelloWorld />
+  <ProfileHeader/>
+  <project/>
 </template>
 
 <script lang="ts" setup>
-import HelloWorld from '@/components/HelloWorld.vue';
-
+import ProfileHeader from '@/components/ProfileHeader.vue';
+import project from '@/components/project.vue';
   //
 </script>

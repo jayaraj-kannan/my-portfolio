@@ -98,7 +98,6 @@ const toggleTheme = () => {
     theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark';
     themeIcon.value = theme.global.current.value.dark ? 'mdi mdi-weather-night' : 'mdi mdi-white-balance-sunny';
 }
-const description = userDetails.personal.description;
 const welcome = userDetails.personal.welcome;
 const skills = userDetails.skill;
 const tools = userDetails.tool;

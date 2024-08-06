@@ -75,44 +75,44 @@ const userDetails = {
 
         {
             title: 'PLM 3DExperience',
-            prependAvatar: '../my-portfolio/src/assets/images/icons/3DS_White_RGB.svg',
+            prependAvatar: '../my-portfolio/assets/images/icons/3DS_White_RGB.svg',
             subtitle: `<span class="text-primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
         },
         {
             title: 'Inteliji',
-            prependAvatar: `../my-portfolio/src/assets/images/icons/intellijiIdea.png`,
+            prependAvatar: `../my-portfolio/assets/images/icons/intellijiIdea.png`,
             subtitle: `<span class="text-primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
         },
         {
             title: 'VS Code',
-            prependAvatar: '../my-portfolio/src/assets/images/icons/vscode.png',
+            prependAvatar: '../my-portfolio/assets/images/icons/vscode.png',
             subtitle: `<span class="text-primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
         },
         {
             title: 'Eclipse',
-            prependAvatar: '../my-portfolio/src/assets/images/icons/eclipse.png',
+            prependAvatar: '../my-portfolio/assets/images/icons/eclipse.png',
             subtitle: `<span class="text-primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
         },
         {
             title: 'Figma',
-            prependAvatar: '../my-portfolio/src/assets/images/icons/figma.png',
+            prependAvatar: '../my-portfolio/assets/images/icons/figma.png',
             subtitle: `<span class="text-primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
         },
         {
             title: 'PhotoShop',
-            prependAvatar: `../my-portfolio/src/assets/images/icons/photoshop.png`,
+            prependAvatar: `../my-portfolio/assets/images/icons/photoshop.png`,
             subtitle: `<span class="text-primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
         },
         {
             title: 'Bruno Api Tester',
-            prependAvatar: `../my-portfolio/src/assets/images/icons/bruno.svg`,
+            prependAvatar: `../my-portfolio/assets/images/icons/bruno.svg`,
             subtitle: `<span class="text-primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
         }
     ],
     experience: [
         {
             companyName: 'Renault Nissan',
-            logo: '../my-portfolio/src/assets/images/icons/rntbci.jpg',
+            logo: '../my-portfolio/assets/images/icons/rntbci.jpg',
             role: 'Assistant Manager - Lead Developer',
             place: 'Chengalpattu, Tamilnadu, India.',
             date: 'Aug 2023 - Till',
@@ -122,7 +122,7 @@ const userDetails = {
         },
         {
             companyName: 'Dassault Systems',
-            logo: '../my-portfolio/src/assets/images/icons/ds.png',
+            logo: '../my-portfolio/assets/images/icons/ds.png',
             place: 'Bangalore, Karnataka, India.',
             role: 'Senior Software Engineer',
             date: 'Aug 2021 - Aug 2023',
@@ -158,7 +158,7 @@ const userDetails = {
         },
         {
             companyName: 'Intelizign Engineering Services',
-            logo: '../my-portfolio/src/assets/images/icons/iz.jpg',
+            logo: '../my-portfolio/assets/images/icons/iz.jpg',
             role: 'Senior Software Engineer',
             place: 'Chennai, Tamilnadu, India',
             date: 'Sep 2018 - Aug 2021',
@@ -173,7 +173,7 @@ const userDetails = {
         },
         {
             companyName: 'AVFA Technologies',
-            logo: '../my-portfolio/src/assets/images/icons/avfa.jpg',
+            logo: '../my-portfolio/assets/images/icons/avfa.jpg',
             role: 'Software Engineer',
             place: 'Cuddalore, Tamilnadu, India',
             date: 'May 2016 - Aug 2018',

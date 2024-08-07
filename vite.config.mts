@@ -33,6 +33,7 @@ export default defineConfig({
       },
     }),
   ],
+  assetsInclude: ['**/*.png', '**/*.jpg', '**/*.svg', '**/*.gif'],
   base:"/my-portfolio/",
   define: { 'process.env': {} },
   resolve: {

@@ -75,44 +75,44 @@ const userDetails = {
 
         {
             title: 'PLM 3DExperience',
-            prependAvatar: '../my-portfolio/assets/images/icons/3DS_White_RGB.svg',
+            prependAvatar: new URL(`../assets/images/icons/3DS_White_RGB.svg`,import.meta.url).href,
             subtitle: `<span class="text-primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
         },
         {
             title: 'Inteliji',
-            prependAvatar: `../my-portfolio/assets/images/icons/intellijiIdea.png`,
+            prependAvatar: new URL(`../assets/images/icons/intellijiIdea.png`,import.meta.url).href,
             subtitle: `<span class="text-primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
         },
         {
             title: 'VS Code',
-            prependAvatar: '../my-portfolio/assets/images/icons/vscode.png',
+            prependAvatar: new URL(`../assets/images/icons/vscode.png`,import.meta.url).href,
             subtitle: `<span class="text-primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
         },
         {
             title: 'Eclipse',
-            prependAvatar: '../my-portfolio/assets/images/icons/eclipse.png',
+            prependAvatar: new URL(`../assets/images/icons/eclipse.png`,import.meta.url).href,
             subtitle: `<span class="text-primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
         },
         {
             title: 'Figma',
-            prependAvatar: '../my-portfolio/assets/images/icons/figma.png',
+            prependAvatar: new URL(`../assets/images/icons/figma.png`,import.meta.url).href,
             subtitle: `<span class="text-primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
         },
         {
             title: 'PhotoShop',
-            prependAvatar: `../my-portfolio/assets/images/icons/photoshop.png`,
+            prependAvatar: new URL(`../assets/images/icons/photoshop.png`,import.meta.url).href,
             subtitle: `<span class="text-primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
         },
         {
             title: 'Bruno Api Tester',
-            prependAvatar: `../my-portfolio/assets/images/icons/bruno.svg`,
+            prependAvatar: new URL(`../assets/images/icons/bruno.svg`,import.meta.url).href,
             subtitle: `<span class="text-primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
         }
     ],
     experience: [
         {
             companyName: 'Renault Nissan',
-            logo: '../my-portfolio/assets/images/icons/rntbci.jpg',
+            logo: new URL(`../assets/images/icons/rntbci.jpg`,import.meta.url).href,
             role: 'Assistant Manager - Lead Developer',
             place: 'Chengalpattu, Tamilnadu, India.',
             date: 'Aug 2023 - Till',
@@ -122,7 +122,7 @@ const userDetails = {
         },
         {
             companyName: 'Dassault Systems',
-            logo: '../my-portfolio/assets/images/icons/ds.png',
+            logo: new URL(`../assets/images/icons/ds.png`,import.meta.url).href,
             place: 'Bangalore, Karnataka, India.',
             role: 'Senior Software Engineer',
             date: 'Aug 2021 - Aug 2023',
@@ -158,7 +158,7 @@ const userDetails = {
         },
         {
             companyName: 'Intelizign Engineering Services',
-            logo: '../my-portfolio/assets/images/icons/iz.jpg',
+            logo: new URL(`../assets/images/icons/iz.jpg`,import.meta.url).href,
             role: 'Senior Software Engineer',
             place: 'Chennai, Tamilnadu, India',
             date: 'Sep 2018 - Aug 2021',
@@ -173,7 +173,7 @@ const userDetails = {
         },
         {
             companyName: 'AVFA Technologies',
-            logo: '../my-portfolio/assets/images/icons/avfa.jpg',
+            logo: new URL(`../assets/images/icons/avfa.jpg`,import.meta.url).href,
             role: 'Software Engineer',
             place: 'Cuddalore, Tamilnadu, India',
             date: 'May 2016 - Aug 2018',

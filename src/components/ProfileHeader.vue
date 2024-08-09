@@ -58,30 +58,35 @@
             </v-card>
             <v-card class="rounded-lg ma-1" title="🫰🏼 work experience!">
                 <v-card-text>
-                    <v-list lines="three" v-for="(company, index) in userDetails.experience" :key="index">
-                        <v-list-item :title="company.companyName" subheading="hai">
-                            <template v-slot:subtitle>
-                                <span>{{ company.date }}</span>
-                                <v-chip size="x-small" v-for="(tech, index) in company.skill" :key="index" class="ma-1">
+                    <v-row dense>
+                        <v-col v-for="(company, index) in userDetails.experience" :key="index" cols="12" md="6">
+                            <v-card  class="rounded-lg" :title="company.companyName" :subtitle="company.date">
+                                <template v-slot:prepend>
+                                    <v-avatar size="50" rounded="0">
+                                        <v-img :src="company.logo"></v-img>
+                                    </v-avatar>
+                                </template>
+                                <template v-slot:text >
+                                    <v-chip size="x-small" v-for="(tech, index) in company.skill" :key="index" class="ma-1">
                                     {{ tech }}
                                 </v-chip>
-                            </template>
-                            <template v-slot:prepend>
-                                <v-avatar size="50" rounded="0">
-                                    <v-img :src="company.logo"></v-img>
-                                </v-avatar>
-                            </template>
-
-                        </v-list-item>
-                    </v-list>
+                                </template>
+                                <template v-slot:append>
+                                    <v-btn icon variant="plain"> 
+                                        <v-icon color="#139c75">mdi-open-in-new</v-icon>
+                                    </v-btn>
+                                </template>
+                            </v-card>
+                        </v-col>
+                    </v-row>
                 </v-card-text>
             </v-card>
             <template v-slot:actions>
-          <v-row justify="center">
-            <v-col class="text-center">
-              <p class="text-caption">©️ made by 🧘🏽 <span class="footer-text">@jayaraj_kannan</span></p>
-            </v-col>
-          </v-row>
+                <v-row justify="center">
+                    <v-col class="text-center">
+                        <p class="text-caption">©️ made by 🧘🏽 <span class="footer-text">@jayaraj_kannan</span></p>
+                    </v-col>
+                </v-row>
             </template>
         </v-card>
     </v-container>

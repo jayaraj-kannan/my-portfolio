@@ -133,7 +133,7 @@ const userDetails = {
             use cases, and conducted testing. I ran unit tests, fixed testing issues, and supported 
             bug fixing. I developed custom functionalities and worked on triggers, JPO, JSP, and JS 
             customizations. Additionally, I reviewed and standardized code, and developed widgets.`,
-            skill: ['3DExperience', 'R21x', 'R22x', 'R23x', 'widget', 'upgrade', 'migration'],
+            skill: ['3DExperience', 'R21x', 'R22x', 'R23x', 'widget', 'upgrade', 'migration','java','JSP','MQL','TCL','UI3 components','Linux','widget','vue'],
             project: [
                 {
                     title: 'Ball Aerospace Upgrade (R19x to R21x)',
@@ -164,7 +164,7 @@ const userDetails = {
             date: 'Sep 2018 - Aug 2021',
             description: `In intelizign got an opportunity to work on PLM domian and got trained as a Enovia developer. 
             woked for Mahindra & Mahindra . done multiple role and projects digital manufacturing using 3dexperience `,
-            skill: ['3DExperience', 'R17x', 'R18x', 'R19x', 'XPDM', 'Teamcenter Integration'],
+            skill: ['3DExperience', 'R17x', 'R18x', 'R19x', 'XPDM', 'Teamcenter Integration','HTML5','CSS','JSP','Tcl','trigger','UI3 Components','REST Api','Web Services'],
             project: [
                 {
                     title: 'Digital Manufacturing Using 3DExperience'
@@ -204,7 +204,7 @@ const userDetails = {
                     tech: ['J2EE', 'Hibernate', 'Spring', 'Spring-Security', 'HTML', 'Bootstrap', 'JSP', 'CSS', 'MySQL'],
                 },
             ],
-            skill: []
+            skill: ['core Java', 'J2EE', 'HTML','JSP', 'CSS', 'Servlet', 'web app','Spring framework','Spring-Security','Hibernate','MySQL','fullstack','Bootstrap'],
         },
 
     ],

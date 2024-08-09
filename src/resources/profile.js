@@ -118,7 +118,7 @@ const userDetails = {
             date: 'Aug 2023 - Till',
             description: `As a Lead Developer analyis the requirement from product team, build and develop the custom widgets using vuejs,
             ,based on the requiremnt develop a spring boot REST application to integrate with 3dexperience application and other application.`,
-            skill: ['R24x', '3DExperience Cloud', 'google cloud', 'github', 'CI/CD', 'widgets', 'vue.js', 'spring boot', 'REST Api']
+            skill: ['R24x','R13x', '3DExperience Cloud', 'google cloud', 'github', 'CI/CD', 'widgets', 'vue.js', 'spring boot','J2EE','Java', 'REST Api','JSP','JPO','MQL','TCL']
         },
         {
             companyName: 'Dassault Systems',

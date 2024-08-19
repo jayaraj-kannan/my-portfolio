@@ -146,7 +146,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref ,onMounted,computed} from "vue";
+import { ref ,computed} from "vue";
 import userDetails from "../resources/profile";
 import { useTheme } from 'vuetify'
 const theme = useTheme()
@@ -165,11 +165,6 @@ const welcome = userDetails.personal.welcome;
 const skills = userDetails.skill;
 const tools = userDetails.tool;
 const value = ref(1)
-const showBottomNav = ref(false);
-const handleScroll = () => {
-  const scrollPosition = window.scrollY;
-  showBottomNav.value = scrollPosition > 200; // Show bottom navigation after scrolling 200px
-};
 const color = computed(() => {
     switch (value.value) {
         case 0: return 'blue-grey'
@@ -179,9 +174,6 @@ const color = computed(() => {
         default: return 'blue-grey'
     }
 })
-const onScroll = () =>{
-    console.log("in onscroll");
-}
 </script>
 <style>
 .fixed-layout {

@@ -48,3 +48,13 @@
 .v-chip.v-chip--size-default {
 font-size: 10px !important;
 }
+.bg-color{
+    background-color: rgb(245, 243, 239) !important;
+    color: rgb(0, 0, 0) !important;
+    caret-color: rgb(0, 0, 0) !important;
+}
+.dark-mode {
+    background-color: rgb(34, 34, 34) !important; /* Dark background color */
+    color: rgb(255, 255, 255) !important; /* Light text color */
+    caret-color: rgb(255, 255, 255) !important; /* Light caret color */
+}

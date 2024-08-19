@@ -99,6 +99,11 @@ const userDetails = {
             subtitle: `<span class="text-primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
         },
         {
+            title: 'Canva',
+            prependAvatar: new URL(`../assets/images/icons/canva.svg`,import.meta.url).href,
+            subtitle: `<span class="text-primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+        },
+        {
             title: 'PhotoShop',
             prependAvatar: new URL(`../assets/images/icons/photoshop.png`,import.meta.url).href,
             subtitle: `<span class="text-primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,

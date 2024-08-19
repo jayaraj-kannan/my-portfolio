@@ -10,7 +10,7 @@
 
                 <v-list-item>
                     <template v-slot:title>
-                        <div sm="12" md="4" lg="2" v-html="welcome"></div>
+                        <div sm="12" md="4" lg="2" v-html="userDetails.personal.welcome"></div>
                     </template>
                     <template v-slot:prepend>
                         <v-avatar size="100" image="../assets/images/color.png"></v-avatar>
@@ -27,14 +27,14 @@
             </v-card>
             <v-card class="rounded-lg ma-1" :class="customClass" variant="flat" title="🧋 my core skills!">
                 <v-card-text>
-                    <v-chip size="small" v-for="(skill, index) in skills" :key="index" class="ma-1 g-color">
+                    <v-chip size="small" v-for="(skill, index) in userDetails.skill" :key="index" class="ma-1 g-color">
                         <template v-slot:prepend>
                             <v-icon class="mr-1">{{ skill.icon }}</v-icon>
                         </template>
                         {{ skill.label }}
                     </v-chip>
                     <v-row class="ma-1">
-                        <v-col class="ma-0 pt-0 pb-0" v-for="(tool, index) in tools" :key="index" cols="12" sm="12"
+                        <v-col class="ma-0 pt-0 pb-0" v-for="(tool, index) in userDetails.tool" :key="index" cols="12" sm="12"
                             md="4" lg="2">
                             <v-list class="rounded-pill mb-1">
                                 <v-list-item  :title="tool.title">
@@ -161,9 +161,6 @@ const toggleTheme = () => {
     themeIcon.value = isDarkMode ? 'mdi mdi-weather-night' : 'mdi mdi-white-balance-sunny';
     customClass.value = isDarkMode ? 'bg-color':'';
 }
-const welcome = userDetails.personal.welcome;
-const skills = userDetails.skill;
-const tools = userDetails.tool;
 const value = ref(1)
 const color = computed(() => {
     switch (value.value) {

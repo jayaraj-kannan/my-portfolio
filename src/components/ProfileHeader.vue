@@ -147,7 +147,6 @@
 
 <script lang="ts" setup>
 import { ref ,computed} from "vue";
-// @ts-ignore: Suppress this error because we know what we're doing
 import userDetails from "../resources/profile";
 import { useTheme } from 'vuetify'
 const theme = useTheme()

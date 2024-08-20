@@ -6,6 +6,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
 @font-face {
     font-family: 'cpc-italic';
     src: url('../fonts/CourierPrimeCodeItalic.ttf') format('truetype');
@@ -14,6 +15,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
 @font-face {
     font-family: 'cpc-regular';
     src: url('../fonts/CourierprimecodeRegular.ttf') format('truetype');
@@ -22,6 +24,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
 @font-face {
     font-family: 'Roboto Mono';
     src: url('../fonts/RobotoMono-Regular.ttf') format('truetype');
@@ -30,31 +33,47 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
 .app-bar-title {
     font-family: 'feel-free';
     font-size: 30px !important;
     color: #4C4C6D;
 }
+
 .note-1 {
     font-family: 'cpc-italic' !important;
 }
+
 .note-2 {
     font-family: 'cpc-regular' !important;
 }
-.cus-card{
+
+.cus-card {
     padding: 6px !important;
     margin: 0 !important;
 }
+
 .v-chip.v-chip--size-default {
-font-size: 10px !important;
+    font-size: 10px !important;
 }
-.bg-color{
+
+.bg-color {
     background-color: rgb(245, 243, 239) !important;
     color: rgb(0, 0, 0) !important;
     caret-color: rgb(0, 0, 0) !important;
 }
+
 .dark-mode {
-    background-color: rgb(34, 34, 34) !important; /* Dark background color */
-    color: rgb(255, 255, 255) !important; /* Light text color */
-    caret-color: rgb(255, 255, 255) !important; /* Light caret color */
+    background-color: rgb(34, 34, 34) !important;
+    /* Dark background color */
+    color: rgb(255, 255, 255) !important;
+    /* Light text color */
+    caret-color: rgb(255, 255, 255) !important;
+    /* Light caret color */
+}
+
+.project-app-icon {
+    background: linear-gradient(to right, #E91E63, #feb47b) !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
 }

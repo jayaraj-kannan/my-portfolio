@@ -226,6 +226,43 @@ const userDetails = {
         `,
 
     },
+    projects:[
+        {
+            title:'Digital Invitation',
+            key:'digital_wedding',
+            icon:'mdi mdi-semantic-web',
+            git:'https://github.com/jayaraj-kannan/digital-wedding-invitation',
+            live:'https://jayaraj-kannan.github.io/digital-wedding-invitation/',
+            description:`I developed a responsive website for my wedding event. 
+            It features an event day countdown, event details, a "Save the Date" option for adding the 
+            event to Apple Calendar or Google Calendar, event venue map integration, and a form for collecting 
+            guest attendance details.`,
+            tech:'HTML5,CSS,google forms'
+        },
+        {
+            title:'Expense Manager',
+            key:'expense_manager',
+            icon:'mdi mdi-api',
+            git:'https://github.com/jayaraj-kannan/expensive_report',
+            live:'https://github.com/jayaraj-kannan/expensive_report',
+            description:`I've developed an API for managing user details using Spring Security. 
+            The API includes two modules: User and Expense. In the User module, 
+            there are two roles: admin and user. Admins have full CRUD (Create, Read, Update, Delete) capabilities, 
+            while all users can create and track their expenses based on categories. 
+            Users can also generate reports to track expenses on a yearly, monthly, or weekly basis. 
+            This project is currently under continuous development.`,
+            tech:'j2EE,Spring Boot,Spring Security,Postgres DB,OAuth,microservices,REST Api'
+        },
+        {
+            title:'Portfolio',
+            key:'portfolio',
+            icon:'mdi mdi-semantic-web',
+            git:'https://github.com/jayaraj-kannan/my-portfolio',
+            live:'https://github.com/jayaraj-kannan/expensive_report',
+            description:`developed a portfolio using vue with vuetify, customized some style and componets.`,
+            tech:'Vuejs,Vuetify,Javascript,CSS,HTML5'
+        }
+    ],
     links: {
         github: 'https://github.com/jayaraj-kannan',
         linkedin: 'https://www.linkedin.com/in/jayaraj-kannan-58922b111/',

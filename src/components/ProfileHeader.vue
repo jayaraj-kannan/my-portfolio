@@ -1,5 +1,4 @@
 <template>
-  
     <v-container class="pa-0">
         <v-card class="rounded-xl ma-1" variant="flat" max-width="100%">
             <v-img src="../assets/images/banner.jpg" alt="Banner Image">
@@ -34,10 +33,10 @@
                         {{ skill.label }}
                     </v-chip>
                     <v-row class="ma-1">
-                        <v-col class="ma-0 pt-0 pb-0" v-for="(tool, index) in userDetails.tool" :key="index" cols="12" sm="12"
-                            md="4" lg="2">
+                        <v-col class="ma-0 pt-0 pb-0" v-for="(tool, index) in userDetails.tool" :key="index" cols="12"
+                            sm="12" md="4" lg="2">
                             <v-list class="rounded-pill mb-1">
-                                <v-list-item  :title="tool.title">
+                                <v-list-item :title="tool.title">
 
                                     <template v-slot:prepend>
                                         <v-avatar rounded="0">
@@ -56,23 +55,58 @@
 
                 </v-card-text>
             </v-card>
-            <v-card class="rounded-lg ma-1" :class="customClass" variant="flat" title="🫰🏼 work experience!" >
+            <v-card class="rounded-lg ma-1" :class="customClass" variant="flat" title="🛠️ Projects!">
+                <v-card-text>
+                    <v-expansion-panels elevation="0" v-model="projectPanel"  class="rounded-lg" variant="popout">
+                        <v-expansion-panel :value="project.key" v-for="(project, index) in userDetails.projects" :key="index" eager class="rounded-lg" 
+                            hide-actions>
+                        <v-expansion-panel-title>
+                            <v-row align="center" class="spacer" no-gutters>
+                                <v-col cols="3" md="1" sm="2">
+                                    <v-avatar size="50">
+                                        <v-icon class="project-app-icon" size="60">
+                                            {{ project.icon }}
+                                            </v-icon>
+                                    </v-avatar>
+                                </v-col>
+                                <v-col class="hidden-xs-only text-left ms-2" cols="6"  md="9" sm="3">
+                                    <strong >{{ project.title }}</strong>
+                                </v-col>
+                                <v-col class="project-link" cols="2" md="1" sm="1">
+                                    <v-btn icon variant="plain">
+                                        <v-icon >mdi-open-in-new</v-icon>
+                                    </v-btn>
+                                </v-col>
+                            </v-row>
+                        </v-expansion-panel-title>
+
+                        <v-expansion-panel-text>
+                            <v-card-text>{{project.description}}</v-card-text>
+                        </v-expansion-panel-text>
+                        
+                    </v-expansion-panel>
+                    </v-expansion-panels>
+                </v-card-text>
+            </v-card>
+            <v-card class="rounded-lg ma-1" :class="customClass" variant="flat" title="🫰🏼 work experience!">
                 <v-card-text>
                     <v-row dense>
                         <v-col v-for="(company, index) in userDetails.experience" :key="index" cols="12" md="6">
-                            <v-card  class="rounded-lg exp" variant="flat" :title="company.companyName" :subtitle="company.date">
+                            <v-card class="rounded-lg exp" variant="flat" :title="company.companyName"
+                                :subtitle="company.date">
                                 <template v-slot:prepend>
                                     <v-avatar size="50" rounded="0">
                                         <v-img :src="company.logo"></v-img>
                                     </v-avatar>
                                 </template>
-                                <template v-slot:text >
-                                    <v-chip size="x-small" v-for="(tech, index) in company.skill" :key="index" class="ma-1">
-                                    {{ tech }}
-                                </v-chip>
+                                <template v-slot:text>
+                                    <v-chip size="x-small" v-for="(tech, index) in company.skill" :key="index"
+                                        class="ma-1">
+                                        {{ tech }}
+                                    </v-chip>
                                 </template>
                                 <template v-slot:append>
-                                    <v-btn icon variant="plain"> 
+                                    <v-btn icon variant="plain">
                                         <v-icon color="#ffff">mdi-open-in-new</v-icon>
                                     </v-btn>
                                 </template>
@@ -81,23 +115,24 @@
                     </v-row>
                 </v-card-text>
             </v-card>
-            <v-card class="rounded-lg ma-1" :class="customClass" variant="flat" title="🫰🏼 Personal!" >
+            <v-card class="rounded-lg ma-1" :class="customClass" variant="flat" title="🫰🏼 Personal!">
                 <v-card-text>
                     <v-row dense>
                         <v-col v-for="(company, index) in userDetails.experience" :key="index" cols="12" md="6">
-                            <v-card  class="rounded-lg exp" :title="company.companyName" :subtitle="company.date">
+                            <v-card class="rounded-lg exp" :title="company.companyName" :subtitle="company.date">
                                 <template v-slot:prepend>
                                     <v-avatar size="50" rounded="0">
                                         <v-img :src="company.logo"></v-img>
                                     </v-avatar>
                                 </template>
-                                <template v-slot:text >
-                                    <v-chip size="x-small" v-for="(tech, index) in company.skill" :key="index" class="ma-1">
-                                    {{ tech }}
-                                </v-chip>
+                                <template v-slot:text>
+                                    <v-chip size="x-small" v-for="(tech, index) in company.skill" :key="index"
+                                        class="ma-1">
+                                        {{ tech }}
+                                    </v-chip>
                                 </template>
                                 <template v-slot:append>
-                                    <v-btn icon variant="plain"> 
+                                    <v-btn icon variant="plain">
                                         <v-icon color="#ffff">mdi-open-in-new</v-icon>
                                     </v-btn>
                                 </template>
@@ -112,36 +147,37 @@
                         <p class="text-caption">©️ made by 🧘🏽 <span class="footer-text">@jayaraj_kannan</span></p>
                     </v-col>
                 </v-row>
-                   
+
             </template>
         </v-card>
-        <v-layout  class="overflow-visible fixed-layout" style="height: 56px;position: sticky; bottom: 0; left: 0; width: 100%;">
-        <v-bottom-navigation fixed v-model="value" :bg-color="color" mode="shift">
-            <v-btn>
-                <v-icon>mdi-television-play</v-icon>
+        <v-layout class="overflow-visible fixed-layout"
+            style="height: 56px;position: sticky; bottom: 0; left: 0; width: 100%;">
+            <v-bottom-navigation fixed v-model="value" :bg-color="color" mode="shift">
+                <v-btn>
+                    <v-icon>mdi-television-play</v-icon>
 
-                <span>Video</span>
-            </v-btn>
+                    <span>Video</span>
+                </v-btn>
 
-            <v-btn>
-                <v-icon>mdi-music-note</v-icon>
+                <v-btn>
+                    <v-icon>mdi-music-note</v-icon>
 
-                <span>Music</span>
-            </v-btn>
+                    <span>Music</span>
+                </v-btn>
 
-            <v-btn>
-                <v-icon>mdi-book</v-icon>
+                <v-btn>
+                    <v-icon>mdi-book</v-icon>
 
-                <span>Book</span>
-            </v-btn>
+                    <span>Book</span>
+                </v-btn>
 
-            <v-btn>
-                <v-icon>mdi-image</v-icon>
+                <v-btn>
+                    <v-icon>mdi-image</v-icon>
 
-                <span>Image</span>
-            </v-btn>
-        </v-bottom-navigation>
-    </v-layout>
+                    <span>Image</span>
+                </v-btn>
+            </v-bottom-navigation>
+        </v-layout>
     </v-container>
 </template>
 
@@ -152,6 +188,7 @@ import { useTheme } from 'vuetify'
 const theme = useTheme()
 const themeIcon = ref('');
 const customClass = ref('');
+const projectPanel = ref<string[]>(['digital_wedding']);
 themeIcon.value = theme.global.current.value.dark ? 'mdi mdi-weather-night' : 'mdi mdi-white-balance-sunny';
 const toggleTheme = () => {
     const isDarkMode = theme.global.current.value.dark;
@@ -234,5 +271,14 @@ const color = computed(() => {
   .d-md-flex {
     display: none !important;
   }
+}
+.project-link {
+    padding-left: 120px !important;
+}
+
+@media (max-width: 400px) {
+    .project-link {
+        padding-left: 50px !important;
+    }
 }
 </style>

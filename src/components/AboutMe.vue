@@ -115,32 +115,6 @@
                     </v-row>
                 </v-card-text>
             </v-card>
-            <v-card class="rounded-lg ma-1" :class="customClass" variant="flat" title="🫰🏼 Personal!">
-                <v-card-text>
-                    <v-row dense>
-                        <v-col v-for="(company, index) in userDetails.experience" :key="index" cols="12" md="6">
-                            <v-card class="rounded-lg exp" :title="company.companyName" :subtitle="company.date">
-                                <template v-slot:prepend>
-                                    <v-avatar size="50" rounded="0">
-                                        <v-img :src="company.logo"></v-img>
-                                    </v-avatar>
-                                </template>
-                                <template v-slot:text>
-                                    <v-chip size="x-small" v-for="(tech, index) in company.skill" :key="index"
-                                        class="ma-1">
-                                        {{ tech }}
-                                    </v-chip>
-                                </template>
-                                <template v-slot:append>
-                                    <v-btn icon variant="plain">
-                                        <v-icon color="#ffff">mdi-open-in-new</v-icon>
-                                    </v-btn>
-                                </template>
-                            </v-card>
-                        </v-col>
-                    </v-row>
-                </v-card-text>
-            </v-card>
             <template v-slot:actions>
                 <v-row justify="center">
                     <v-col class="text-center">
@@ -150,34 +124,7 @@
 
             </template>
         </v-card>
-        <v-layout class="overflow-visible fixed-layout"
-            style="height: 56px;position: sticky; bottom: 0; left: 0; width: 100%;">
-            <v-bottom-navigation fixed v-model="value" :bg-color="color" mode="shift">
-                <v-btn>
-                    <v-icon>mdi-television-play</v-icon>
-
-                    <span>Video</span>
-                </v-btn>
-
-                <v-btn>
-                    <v-icon>mdi-music-note</v-icon>
-
-                    <span>Music</span>
-                </v-btn>
-
-                <v-btn>
-                    <v-icon>mdi-book</v-icon>
-
-                    <span>Book</span>
-                </v-btn>
-
-                <v-btn>
-                    <v-icon>mdi-image</v-icon>
-
-                    <span>Image</span>
-                </v-btn>
-            </v-bottom-navigation>
-        </v-layout>
+       <BottomNavBar/>
     </v-container>
 </template>
 
@@ -185,9 +132,11 @@
 import { ref ,computed} from "vue";
 import userDetails from "../resources/profile";
 import { useTheme } from 'vuetify'
+import BottomNavBar from '@/components/BottomNavBar.vue';
 const theme = useTheme()
 const themeIcon = ref('');
 const customClass = ref('');
+customClass.value = !theme.global.current.value.dark ? 'bg-color':'';
 const projectPanel = ref<string[]>(['digital_wedding']);
 themeIcon.value = theme.global.current.value.dark ? 'mdi mdi-weather-night' : 'mdi mdi-white-balance-sunny';
 const toggleTheme = () => {

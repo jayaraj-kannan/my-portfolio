@@ -1,7 +1,7 @@
 <template>
-  <ProfileHeader/>
+  <AboutMe/>
 </template>
 
 <script lang="ts" setup>
-import ProfileHeader from '@/components/ProfileHeader.vue';
+import AboutMe from '@/components/AboutMe.vue';
 </script>

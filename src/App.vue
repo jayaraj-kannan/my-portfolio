@@ -1,7 +1,9 @@
 <template>
   <v-app>
-    <v-main >
-      <router-view />
+    <v-main>
+      <transition name="fade-transition" mode="out-in">
+        <router-view />
+      </transition>
     </v-main>
   </v-app>
 </template>
@@ -9,24 +11,12 @@
 <script lang="ts" setup>
 import "../src/assets/style/css/cus_style.css";
 </script>
+
 <style>
-/* html,
-body {
-  overflow-y: hidden !important;
-  overflow-x: visible !important;
+.fade-transition-enter-active, .fade-transition-leave-active {
+  transition: opacity 0.5s ease;
 }
-.scrollable-content {
-  overflow-y: scroll;
-  height: 100vh; 
-  padding-right: 15px;
+.fade-transition-enter, .fade-transition-leave-to {
+  opacity: 0;
 }
-
-.scrollable-content::-webkit-scrollbar {
-  display: none;
-}
-
-.scrollable-content {
-  -ms-overflow-style: none; 
-  scrollbar-width: none; 
-} */
 </style>

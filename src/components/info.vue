@@ -67,7 +67,6 @@ const theme = useTheme()
 const themeIcon = ref('');
 const customClass = ref('');
 customClass.value = !theme.global.current.value.dark ? 'bg-color':'';
-const projectPanel = ref<string[]>(['digital_wedding']);
 themeIcon.value = theme.global.current.value.dark ? 'mdi mdi-weather-night' : 'mdi mdi-white-balance-sunny';
 const toggleTheme = () => {
     const isDarkMode = theme.global.current.value.dark;
@@ -77,16 +76,6 @@ const toggleTheme = () => {
     themeIcon.value = isDarkMode ? 'mdi mdi-weather-night' : 'mdi mdi-white-balance-sunny';
     customClass.value = isDarkMode ? 'bg-color':'';
 }
-const value = ref(1)
-const color = computed(() => {
-    switch (value.value) {
-        case 0: return 'blue-grey'
-        case 1: return 'teal'
-        case 2: return 'brown'
-        case 3: return 'indigo'
-        default: return 'blue-grey'
-    }
-})
 </script>
 <style>
 .fixed-layout {

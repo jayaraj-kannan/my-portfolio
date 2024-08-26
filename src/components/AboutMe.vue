@@ -147,16 +147,6 @@ const toggleTheme = () => {
     themeIcon.value = isDarkMode ? 'mdi mdi-weather-night' : 'mdi mdi-white-balance-sunny';
     customClass.value = isDarkMode ? 'bg-color':'';
 }
-const value = ref(1)
-const color = computed(() => {
-    switch (value.value) {
-        case 0: return 'blue-grey'
-        case 1: return 'teal'
-        case 2: return 'brown'
-        case 3: return 'indigo'
-        default: return 'blue-grey'
-    }
-})
 </script>
 <style>
 .fixed-layout {

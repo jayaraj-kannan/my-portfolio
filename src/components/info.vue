@@ -59,7 +59,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref ,computed} from "vue";
+import { ref } from "vue";
 import userDetails from "../resources/profile";
 import { useTheme } from 'vuetify'
 import BottomNavBar from '@/components/BottomNavBar.vue';

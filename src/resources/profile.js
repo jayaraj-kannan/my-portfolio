@@ -226,6 +226,11 @@ const userDetails = {
         `,
 
     },
+    certification:[
+        {
+            title:'',
+        }
+    ],
     projects:[
         {
             title:'Digital Invitation',
@@ -256,6 +261,15 @@ const userDetails = {
         {
             title:'Portfolio',
             key:'portfolio',
+            icon:'mdi mdi-semantic-web',
+            git:'https://github.com/jayaraj-kannan/my-portfolio',
+            live:'https://github.com/jayaraj-kannan/expensive_report',
+            description:`developed a portfolio using vue with vuetify, customized some style and componets.`,
+            tech:'Vuejs,Vuetify,Javascript,CSS,HTML5'
+        },
+        {
+            title:'Image Editor',
+            key:'imagee_editor',
             icon:'mdi mdi-semantic-web',
             git:'https://github.com/jayaraj-kannan/my-portfolio',
             live:'https://github.com/jayaraj-kannan/expensive_report',

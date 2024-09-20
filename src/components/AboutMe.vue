@@ -1,6 +1,6 @@
 <template>
-    <v-container class="pa-0">
-        <v-card class="rounded-xl ma-1" variant="flat" max-width="100%">
+    <v-container class="pa-0" id="goto-container">
+        <v-card :ref="instance => cards.aboutme = instance" class="rounded-xl ma-1" variant="flat" max-width="100%">
             <v-img src="../assets/images/banner.jpg" alt="Banner Image">
             </v-img>
             <v-fab active class="ms-4 mr-1" :icon="themeIcon" location="bottom end" size="x-small" absolute offset
@@ -55,40 +55,8 @@
 
                 </v-card-text>
             </v-card>
-            <v-card class="rounded-lg ma-1" :class="customClass" variant="flat" title="🛠️ Projects!">
-                <v-card-text>
-                    <v-expansion-panels elevation="0" v-model="projectPanel"  class="rounded-lg" variant="popout">
-                        <v-expansion-panel :value="project.key" v-for="(project, index) in userDetails.projects" :key="index" eager class="rounded-lg" 
-                            hide-actions>
-                        <v-expansion-panel-title>
-                            <v-row align="center" class="spacer" no-gutters>
-                                <v-col cols="3" md="1" sm="2">
-                                    <v-avatar size="50">
-                                        <v-icon class="project-app-icon" size="60">
-                                            {{ project.icon }}
-                                            </v-icon>
-                                    </v-avatar>
-                                </v-col>
-                                <v-col class="hidden-xs-only text-left ms-2" cols="6"  md="9" sm="3">
-                                    <strong >{{ project.title }}</strong>
-                                </v-col>
-                                <v-col class="project-link" cols="2" md="1" sm="1">
-                                    <v-btn icon variant="plain">
-                                        <v-icon >mdi-open-in-new</v-icon>
-                                    </v-btn>
-                                </v-col>
-                            </v-row>
-                        </v-expansion-panel-title>
-
-                        <v-expansion-panel-text>
-                            <v-card-text>{{project.description}}</v-card-text>
-                        </v-expansion-panel-text>
-                        
-                    </v-expansion-panel>
-                    </v-expansion-panels>
-                </v-card-text>
-            </v-card>
-            <v-card class="rounded-lg ma-1" :class="customClass" variant="flat" title="🫰🏼 work experience!">
+            <v-card :ref="instance => cards.projects = instance" class="rounded-lg ma-1" :class="customClass"
+                variant="flat" title="🫰🏼 work experience!">
                 <v-card-text>
                     <v-row dense>
                         <v-col v-for="(company, index) in userDetails.experience" :key="index" cols="12" md="6">
@@ -115,6 +83,73 @@
                     </v-row>
                 </v-card-text>
             </v-card>
+            <v-card class="rounded-lg ma-1" :class="customClass" variant="flat" title="🛠️ Projects!">
+                <v-card-text>
+                    <v-expansion-panels elevation="0" v-model="projectPanel" class="rounded-lg" variant="popout">
+                        <v-expansion-panel :value="project.key" v-for="(project, index) in userDetails.projects"
+                            :key="index" eager class="rounded-lg" hide-actions>
+                            <v-expansion-panel-title>
+                                <v-row align="center" class="spacer" no-gutters>
+                                    <v-col cols="3" md="1" sm="2">
+                                        <v-avatar size="50">
+                                            <v-icon class="project-app-icon" size="60">
+                                                {{ project.icon }}
+                                            </v-icon>
+                                        </v-avatar>
+                                    </v-col>
+                                    <v-col class="hidden-xs-only text-left ms-2" cols="6" md="9" sm="3">
+                                        <strong>{{ project.title }}</strong>
+                                    </v-col>
+                                    <v-col class="project-link" cols="2" md="1" sm="1">
+                                        <v-btn icon variant="plain">
+                                            <v-icon>mdi-open-in-new</v-icon>
+                                        </v-btn>
+                                    </v-col>
+                                </v-row>
+                            </v-expansion-panel-title>
+
+                            <v-expansion-panel-text>
+                                <v-card-text>{{project.description}}</v-card-text>
+                            </v-expansion-panel-text>
+
+                        </v-expansion-panel>
+                    </v-expansion-panels>
+                </v-card-text>
+            </v-card>
+            <v-card :ref="instance => cards.connect = instance" class="rounded-lg ma-1" :class="customClass" variant="flat" title="💓 Connect with me!">
+                <v-card-text class="d-flex">
+                    <v-row justify="center" dense>
+                        <!-- <v-col cols="12">
+          <v-img
+            class="mx-auto mt-12 mb-16"
+            max-height="140"
+            max-width="240"
+            src="https://cdn.vuetifyjs.com/docs/images/logos/vuetify-logo-dark-text.svg"
+          ></v-img>
+        </v-col> -->
+
+                        <v-col cols="12">
+                            <v-text-field class="mx-auto"
+                                density="compact" menu-icon="" placeholder="your name" label="name" clearable
+                                prepend-inner-icon="mdi-account" style="max-width: 350px;" theme="light" variant="solo"
+                                auto-select-first item-props rounded>
+
+                            </v-text-field>
+                            <v-text-field class="mx-auto"
+                                density="compact" menu-icon="" placeholder="your name" label="email" clearable
+                                prepend-inner-icon="mdi-email" style="max-width: 350px;" theme="light" variant="solo"
+                                auto-select-first item-props rounded>
+
+                            </v-text-field>
+                            <v-textarea class="mx-auto" rows="2"
+                                density="compact" menu-icon="" placeholder="your name" label="message" clearable
+                                prepend-inner-icon="mdi-email" style="max-width: 350px;" theme="light" variant="solo"
+                                auto-select-first item-props rounded></v-textarea>
+                                <v-btn rounded="lg" color="#8E24AA"  size="x-large" max-width="350" block>send</v-btn>
+                        </v-col>
+                    </v-row>
+                </v-card-text>
+            </v-card>
             <template v-slot:actions>
                 <v-row justify="center">
                     <v-col class="text-center">
@@ -124,16 +159,64 @@
 
             </template>
         </v-card>
-       <BottomNavBar/>
+        <v-layout class="overflow-visible fixed-layout"
+            style="height: 56px;position: sticky; bottom: 0; left: 0; width: 100%;">
+            <v-bottom-navigation fixed v-model="value" :bg-color="color" mode="shift">
+                <v-btn @click="goTo(cards['aboutme'].$el, options)">
+                    <v-icon>mdi mdi-account-question-outline</v-icon>
+
+                    <span>About Me</span>
+                </v-btn>
+
+                <v-btn @click="goTo(cards['projects'].$el, options)">
+                    <v-icon>mdi mdi-bag-personal-outline</v-icon>
+
+                    <span>Personal</span>
+                </v-btn>
+
+                <v-btn @click="goTo(cards['connect'].$el, options)">
+                    <v-icon>mdi mdi-human-greeting-proximity</v-icon>
+
+                    <span>Connect</span>
+                </v-btn>
+            </v-bottom-navigation>
+        </v-layout>
     </v-container>
 </template>
 
 <script lang="ts" setup>
-import { ref} from "vue";
+import { ref,computed} from "vue";
 import userDetails from "../resources/profile";
-import { useTheme } from 'vuetify'
-import BottomNavBar from '@/components/BottomNavBar.vue';
+import { useTheme ,useGoTo } from 'vuetify'
+const value = ref(1)
+
+const color = computed(() => {
+    switch (value.value) {
+        case 0: return 'blue-grey'
+        case 1: return 'teal'
+        case 2: return 'brown'
+        case 3: return 'indigo'
+        default: return 'blue-grey'
+    }
+})
 const theme = useTheme()
+const goTo = useGoTo()
+const cards = ref({
+    aboutme:null,
+    projects:null,
+    connect:null
+})
+const duration = ref(300)
+const offset = ref(0)
+const connectName =ref('');
+const easing = ref('easeInOutCubic')
+const component = ref('aboutme')
+const options = computed(() => ({
+  duration: duration.value,
+  easing: easing.value,
+  offset: offset.value,
+}))
+
 const themeIcon = ref('');
 const customClass = ref('');
 customClass.value = !theme.global.current.value.dark ? 'bg-color':'';

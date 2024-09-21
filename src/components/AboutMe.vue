@@ -109,14 +109,15 @@
                             </v-expansion-panel-title>
 
                             <v-expansion-panel-text>
-                                <v-card-text>{{project.description}}</v-card-text>
+                                <v-card-text>{{ project.description }}</v-card-text>
                             </v-expansion-panel-text>
 
                         </v-expansion-panel>
                     </v-expansion-panels>
                 </v-card-text>
             </v-card>
-            <v-card :ref="instance => cards.connect = instance" class="rounded-lg ma-1" :class="customClass" variant="flat" title="💓 Connect with me!">
+            <v-card :ref="instance => cards.connect = instance" class="rounded-lg ma-1" :class="customClass"
+                variant="flat" title="💓 Connect with me!">
                 <v-card-text class="d-flex">
                     <v-row justify="center" dense>
                         <!-- <v-col cols="12">
@@ -129,23 +130,22 @@
         </v-col> -->
 
                         <v-col cols="12">
-                            <v-text-field class="mx-auto"
-                                density="compact" menu-icon="" placeholder="your name" label="name" clearable
-                                prepend-inner-icon="mdi-account" style="max-width: 350px;" theme="light" variant="solo"
-                                auto-select-first item-props rounded>
+                            <v-text-field class="mx-auto" density="compact" menu-icon="" placeholder="your name"
+                                label="name" clearable prepend-inner-icon="mdi-account" style="max-width: 350px;"
+                                theme="light" variant="solo" auto-select-first item-props rounded>
 
                             </v-text-field>
-                            <v-text-field class="mx-auto"
-                                density="compact" menu-icon="" placeholder="your name" label="email" clearable
-                                prepend-inner-icon="mdi-email" style="max-width: 350px;" theme="light" variant="solo"
-                                auto-select-first item-props rounded>
+                            <v-text-field class="mx-auto" density="compact" menu-icon="" placeholder="your name"
+                                label="email" clearable prepend-inner-icon="mdi-email" style="max-width: 350px;"
+                                theme="light" variant="solo" auto-select-first item-props rounded>
 
                             </v-text-field>
-                            <v-textarea class="mx-auto" rows="2"
-                                density="compact" menu-icon="" placeholder="your name" label="message" clearable
-                                prepend-inner-icon="mdi-email" style="max-width: 350px;" theme="light" variant="solo"
-                                auto-select-first item-props rounded></v-textarea>
-                                <v-btn rounded="lg" color="#8E24AA"  size="x-large" max-width="350" block>send</v-btn>
+                            <v-textarea class="mx-auto" rows="2" density="compact" menu-icon="" placeholder="your name"
+                                label="message" clearable prepend-inner-icon="mdi mdi-message-text"
+                                style="max-width: 350px;" theme="light" variant="solo" auto-select-first item-props
+                                rounded></v-textarea>
+                            <v-btn class="mx-auto" rounded="lg" color="#8E24AA" size="x-large" min-width="350"
+                                block>send</v-btn>
                         </v-col>
                     </v-row>
                 </v-card-text>
@@ -162,19 +162,19 @@
         <v-layout class="overflow-visible fixed-layout"
             style="height: 56px;position: sticky; bottom: 0; left: 0; width: 100%;">
             <v-bottom-navigation fixed v-model="value" :bg-color="color" mode="shift">
-                <v-btn @click="goTo(cards['aboutme'].$el, options)">
+                <v-btn @click="scrollTo('aboutme')">
                     <v-icon>mdi mdi-account-question-outline</v-icon>
 
                     <span>About Me</span>
                 </v-btn>
 
-                <v-btn @click="goTo(cards['projects'].$el, options)">
+                <v-btn @click="scrollTo('projects')">
                     <v-icon>mdi mdi-bag-personal-outline</v-icon>
 
                     <span>Personal</span>
                 </v-btn>
 
-                <v-btn @click="goTo(cards['connect'].$el, options)">
+                <v-btn @click="scrollTo('connect')">
                     <v-icon>mdi mdi-human-greeting-proximity</v-icon>
 
                     <span>Connect</span>
@@ -185,65 +185,75 @@
 </template>
 
 <script lang="ts" setup>
-import { ref,computed} from "vue";
+import { ref, computed } from "vue";
 import userDetails from "../resources/profile";
-import { useTheme ,useGoTo } from 'vuetify'
+import { useTheme, useGoTo } from 'vuetify';
 const value = ref(1)
 
 const color = computed(() => {
     switch (value.value) {
-        case 0: return 'blue-grey'
+        case 0: return 'teal'
         case 1: return 'teal'
-        case 2: return 'brown'
-        case 3: return 'indigo'
-        default: return 'blue-grey'
+        case 2: return 'teal'
+        case 3: return 'teal'
+        default: return 'teal'
     }
 })
 const theme = useTheme()
 const goTo = useGoTo()
-const cards = ref({
-    aboutme:null,
-    projects:null,
-    connect:null
-})
+const scrollTo = (componentKey: keyof typeof cards) => {
+    const componentElement = cards[componentKey]?.$el  // Get the component's element
+    if (componentElement) {
+        goTo(componentElement, options.value)  // Scroll to the component's element
+    } else {
+        console.error(`Component ${componentKey} does not exist or is not yet rendered.`)
+    }
+}
+const cards = {
+    aboutme: null as any,
+    projects: null as any,
+    connect: null as any
+};
 const duration = ref(300)
 const offset = ref(0)
-const connectName =ref('');
 const easing = ref('easeInOutCubic')
-const component = ref('aboutme')
 const options = computed(() => ({
-  duration: duration.value,
-  easing: easing.value,
-  offset: offset.value,
+    duration: duration.value,
+    easing: easing.value,
+    offset: offset.value,
 }))
 
 const themeIcon = ref('');
 const customClass = ref('');
-customClass.value = !theme.global.current.value.dark ? 'bg-color':'';
+customClass.value = !theme.global.current.value.dark ? 'bg-color' : '';
 const projectPanel = ref<string[]>(['digital_wedding']);
 themeIcon.value = theme.global.current.value.dark ? 'mdi mdi-weather-night' : 'mdi mdi-white-balance-sunny';
 const toggleTheme = () => {
-    const isDarkMode = theme.global.current.value.dark;
+const isDarkMode = theme.global.current.value.dark;
 
-    // Toggle theme name and icon
-    theme.global.name.value = isDarkMode ? 'light' : 'dark';
-    themeIcon.value = isDarkMode ? 'mdi mdi-weather-night' : 'mdi mdi-white-balance-sunny';
-    customClass.value = isDarkMode ? 'bg-color':'';
+ // Toggle theme name and icon
+theme.global.name.value = isDarkMode ? 'light' : 'dark';
+themeIcon.value = isDarkMode ? 'mdi mdi-weather-night' : 'mdi mdi-white-balance-sunny';
+customClass.value = isDarkMode ? 'bg-color' : '';
 }
 </script>
 <style>
 .fixed-layout {
-  z-index: 1000; /* Adjust the z-index if necessary */
+    z-index: 1000;
+    /* Adjust the z-index if necessary */
 }
+
 .v-layout {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 
 .v-bottom-navigation {
-  z-index: 1000; /* Ensure it's on top */
+    z-index: 1000;
+    /* Ensure it's on top */
 }
+
 .g-color {
     color: azure !important;
     background: linear-gradient(to right, #139c75, #00535b) !important;
@@ -260,40 +270,45 @@ const toggleTheme = () => {
     font-weight: bold;
     font-size: 18px;
 }
-.footer-text{
+
+.footer-text {
     background: linear-gradient(96deg, #5fff84, #FF9800);
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
 .d-none {
-  display: none !important;
+    display: none !important;
 }
 
 .d-md-flex {
-  display: flex !important;
+    display: flex !important;
 }
 
 .d-md-none {
-  display: none !important;
+    display: none !important;
 }
 
 @media (min-width: 960px) {
-  .d-md-none {
-    display: none !important;
-  }
-  .d-md-flex {
-    display: flex !important;
-  }
+    .d-md-none {
+        display: none !important;
+    }
+
+    .d-md-flex {
+        display: flex !important;
+    }
 }
 
 @media (max-width: 959px) {
-  .d-md-none {
-    display: flex !important;
-  }
-  .d-md-flex {
-    display: none !important;
-  }
+    .d-md-none {
+        display: flex !important;
+    }
+
+    .d-md-flex {
+        display: none !important;
+    }
 }
+
 .project-link {
     padding-left: 120px !important;
 }

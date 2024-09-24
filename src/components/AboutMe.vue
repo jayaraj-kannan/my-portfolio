@@ -174,7 +174,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed ,onMounted} from "vue";
+import { ref, computed ,onBeforeMount} from "vue";
 import userDetails from "../resources/profile";
 import { useTheme, useGoTo } from 'vuetify';
 const value = ref(0)
@@ -186,7 +186,7 @@ const value = ref(0)
 //         default: return 'teal'
 //     }
 // })
-onMounted(() => {
+onBeforeMount(() => {
   userDetails.personal.description = userDetails.personal.description.replace('[YEAR1]', calculateYears(5,2016));
   userDetails.personal.description = userDetails.personal.description.replace('[YEAR2]', calculateYears(5,2018));
 });

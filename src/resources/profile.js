@@ -218,8 +218,8 @@ const userDetails = {
         Im <span class='name'>Jayaraj Kannan</span> 💻 </br>
         <i class='text-info text-wrap text-caption'>Full stack ● Enovia Developer</i>`,
         name: 'Jayaraj Kannan',
-        description: `<div class='text-caption'>With over <span class='text-primary'> 8+ years </span>of experience in 
-        full-stack development, I have spent the past 7+ years specializing in 
+        description: `<div class='text-caption'>With over <span class='text-primary'> [YEAR1] years </span>of experience in 
+        full-stack development, I have spent the past [YEAR2] years specializing in 
         the PLM domain as a Solution Architect for 3DExperience (Enovia). My expertise 
         includes Enovia customization and development, 3DExperience upgrade and migration 
         projects, widget development, and platform installation and configuration.</div>
@@ -287,5 +287,25 @@ const userDetails = {
     role: 'Full stack Java Developer ● Enovia Developer'
 
 }
+function actualYrsOfExp(){
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth() + 1; // Months are zero-indexed, so add 1
 
+    // Calculate year and month difference
+    let yearDifference = currentYear - 2016;
+    let monthDifference = currentMonth - 5;
+
+    // Adjust if monthDifference is negative
+    if (monthDifference < 0) {
+        yearDifference -= 1;
+        monthDifference += 12;
+    }
+
+    // Calculate the total difference in years as a decimal
+    const totalYears = yearDifference + monthDifference / 12;
+
+    // Return the result as a string with one decimal precision
+    return totalYears.toFixed(1);
+}
 export default userDetails;

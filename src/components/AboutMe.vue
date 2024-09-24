@@ -118,36 +118,25 @@
             </v-card>
             <v-card :ref="instance => cards.connect = instance" class="rounded-lg ma-1" :class="customClass"
                 variant="flat" title="💓 Connect with me!">
-                <v-card-text class="d-flex">
-                    <v-row justify="center" dense>
-                        <!-- <v-col cols="12">
-          <v-img
-            class="mx-auto mt-12 mb-16"
-            max-height="140"
-            max-width="240"
-            src="https://cdn.vuetifyjs.com/docs/images/logos/vuetify-logo-dark-text.svg"
-          ></v-img>
-        </v-col> -->
-
-                        <v-col cols="12">
-                            <v-text-field class="mx-auto" density="compact" menu-icon="" placeholder="your name"
-                                label="name" clearable prepend-inner-icon="mdi-account" style="max-width: 350px;"
-                                theme="light" variant="solo" auto-select-first item-props rounded>
-
-                            </v-text-field>
-                            <v-text-field class="mx-auto" density="compact" menu-icon="" placeholder="your name"
-                                label="email" clearable prepend-inner-icon="mdi-email" style="max-width: 350px;"
-                                theme="light" variant="solo" auto-select-first item-props rounded>
-
-                            </v-text-field>
-                            <v-textarea class="mx-auto" rows="2" density="compact" menu-icon="" placeholder="your name"
-                                label="message" clearable prepend-inner-icon="mdi mdi-message-text"
-                                style="max-width: 350px;" theme="light" variant="solo" auto-select-first item-props
-                                rounded></v-textarea>
-                            <v-btn class="mx-auto" rounded="lg" color="#8E24AA" size="x-large" min-width="350"
-                                block>send</v-btn>
-                        </v-col>
-                    </v-row>
+                <v-card-text >
+                    <v-card variant="flat" class="pa-2">
+                            <v-text-field max-width="350" class="mx-auto" density="compact" menu-icon="" placeholder="your name"
+                                        label="name" clearable prepend-inner-icon="mdi-account"
+                                        theme="light" variant="solo" auto-select-first item-props rounded>
+        
+                                    </v-text-field>
+                                    <v-text-field max-width="350" class="mx-auto" density="compact" menu-icon="" placeholder="your name"
+                                        label="email" clearable prepend-inner-icon="mdi-email"
+                                        theme="light" variant="solo" auto-select-first item-props rounded>
+        
+                                    </v-text-field>
+                                    <v-textarea max-width="350" class="mx-auto" rows="2" density="compact" menu-icon="" placeholder="your name"
+                                        label="message" clearable prepend-inner-icon="mdi mdi-message-text"
+                                         theme="light" variant="solo" auto-select-first item-props
+                                        rounded></v-textarea>
+                                    <v-btn class="mx-auto"  min-width="300" rounded="lg" color="#8E24AA" 
+                                        block>send</v-btn>
+                   </v-card>
                 </v-card-text>
             </v-card>
             <template v-slot:actions>
@@ -161,7 +150,7 @@
         </v-card>
         <v-layout class="overflow-visible fixed-layout"
             style="height: 56px;position: sticky; bottom: 0; left: 0; width: 100%;">
-            <v-bottom-navigation fixed v-model="value" :bg-color="color" mode="shift">
+            <v-bottom-navigation fixed v-model="value" bg-color="teal" mode="shift">
                 <v-btn @click="scrollTo('aboutme')">
                     <v-icon>mdi mdi-account-question-outline</v-icon>
 
@@ -185,20 +174,22 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from "vue";
+import { ref, computed ,onMounted} from "vue";
 import userDetails from "../resources/profile";
 import { useTheme, useGoTo } from 'vuetify';
-const value = ref(1)
-
-const color = computed(() => {
-    switch (value.value) {
-        case 0: return 'teal'
-        case 1: return 'teal'
-        case 2: return 'teal'
-        case 3: return 'teal'
-        default: return 'teal'
-    }
-})
+const value = ref(0)
+// const color = computed(() => {
+//     switch (value.value) {
+//         case 0: return 'teal'
+//         case 1: return 'teal'
+//         case 2: return 'teal'
+//         default: return 'teal'
+//     }
+// })
+onMounted(() => {
+  userDetails.personal.description = userDetails.personal.description.replace('[YEAR1]', calculateYears(5,2016));
+  userDetails.personal.description = userDetails.personal.description.replace('[YEAR2]', calculateYears(5,2018));
+});
 const theme = useTheme()
 const goTo = useGoTo()
 const scrollTo = (componentKey: keyof typeof cards) => {
@@ -235,6 +226,27 @@ const isDarkMode = theme.global.current.value.dark;
 theme.global.name.value = isDarkMode ? 'light' : 'dark';
 themeIcon.value = isDarkMode ? 'mdi mdi-weather-night' : 'mdi mdi-white-balance-sunny';
 customClass.value = isDarkMode ? 'bg-color' : '';
+}
+function calculateYears(month: number,year:number){
+    const currentDate: Date = new Date();
+    const currentYear: number = currentDate.getFullYear();
+    const currentMonth: number = currentDate.getMonth() + 1; // Months are zero-indexed, so add 1
+
+    // Calculate year and month difference
+    let yearDifference: number = currentYear - year;
+    let monthDifference: number = currentMonth - month;
+
+    // Adjust if monthDifference is negative
+    if (monthDifference < 0) {
+        yearDifference -= 1;
+        monthDifference += 12;
+    }
+
+    // Calculate the total difference in years as a decimal
+    const totalYears:number = yearDifference + monthDifference / 12;
+
+    // Return the result as a string with one decimal precision
+    return totalYears.toFixed(1);
 }
 </script>
 <style>

@@ -12,7 +12,7 @@
                         <div sm="12" md="4" lg="2" v-html="userDetails.personal.welcome"></div>
                     </template>
                     <template v-slot:prepend>
-                        <v-avatar size="100" image="../assets/images/color.png"></v-avatar>
+                        <v-avatar size="130" image="../assets/images/color.png"></v-avatar>
                     </template>
 
                 </v-list-item>
@@ -254,7 +254,21 @@ function calculateYears(month: number,year:number){
     z-index: 1000;
     /* Adjust the z-index if necessary */
 }
+/* Waving animation */
+@keyframes wave {
+  0% { transform: rotate(0deg); }
+  20% { transform: rotate(14deg); }
+  40% { transform: rotate(-8deg); }
+  60% { transform: rotate(14deg); }
+  80% { transform: rotate(-4deg); }
+  100% { transform: rotate(0deg); }
+}
 
+.waving-hand {
+  display: inline-block;
+  animation: wave 1.5s infinite;
+  transform-origin: 70% 70%; /* Adjust the origin for a more natural waving motion */
+}
 .v-layout {
     display: flex;
     flex-direction: column;

@@ -214,7 +214,7 @@ const userDetails = {
 
     ],
     personal: {
-        welcome: `Hello ! 👋</br>
+        welcome: `Hello ! <i class='waving-hand'>👋</i></br>
         Im <span class='name'>Jayaraj Kannan</span> 💻 </br>
         <i class='text-info text-wrap text-caption'>Full stack ● Enovia Developer</i>`,
         name: 'Jayaraj Kannan',

@@ -1,7 +1,7 @@
 <template>
-  <AboutMe/>
+  <Home/>
 </template>
 
 <script lang="ts" setup>
-import AboutMe from '@/components/AboutMe.vue';
+import Home from '@/components/Home.vue';
 </script>

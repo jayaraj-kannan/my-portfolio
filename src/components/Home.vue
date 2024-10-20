@@ -187,6 +187,8 @@ const value = ref(0)
 //     }
 // })
 onBeforeMount(() => {
+    theme.global.name.value = 'light';
+    customClass.value = 'bg-color';
   userDetails.personal.description = userDetails.personal.description.replace('[YEAR1]', calculateYears(5,2016));
   userDetails.personal.description = userDetails.personal.description.replace('[YEAR2]', calculateYears(5,2018));
 });

@@ -120,22 +120,24 @@
                 variant="flat" title="💓 Connect with me!">
                 <v-card-text >
                     <v-card variant="flat" class="pa-2">
-                            <v-text-field max-width="350" class="mx-auto" density="compact" menu-icon="" placeholder="your name"
+                        <form @submit.prevent="sendEmail">
+                            <v-text-field max-width="350" required v-model="clientName" class="mx-auto" density="compact" menu-icon="" placeholder="your name"
                                         label="name" clearable prepend-inner-icon="mdi-account"
                                         theme="light" variant="solo" auto-select-first item-props rounded>
         
                                     </v-text-field>
-                                    <v-text-field max-width="350" class="mx-auto" density="compact" menu-icon="" placeholder="your name"
+                                    <v-text-field max-width="350" required type="email" v-model="clientEmail" class="mx-auto" density="compact" menu-icon="" placeholder="your name"
                                         label="email" clearable prepend-inner-icon="mdi-email"
                                         theme="light" variant="solo" auto-select-first item-props rounded>
         
                                     </v-text-field>
-                                    <v-textarea max-width="350" class="mx-auto" rows="2" density="compact" menu-icon="" placeholder="your name"
+                                    <v-textarea max-width="350" required v-model="clientMessage" class="mx-auto" rows="2" density="compact" menu-icon="" placeholder="your name"
                                         label="message" clearable prepend-inner-icon="mdi mdi-message-text"
                                          theme="light" variant="solo" auto-select-first item-props
                                         rounded></v-textarea>
-                                    <v-btn class="mx-auto"  min-width="300" rounded="lg" color="#8E24AA" 
+                                    <v-btn class="mx-auto" type="submit" min-width="300" rounded="lg" color="#8E24AA" 
                                         block>send</v-btn>
+                                    </form>
                    </v-card>
                 </v-card-text>
             </v-card>
@@ -177,6 +179,7 @@
 import { ref, computed ,onBeforeMount} from "vue";
 import userDetails from "../resources/profile";
 import { useTheme, useGoTo } from 'vuetify';
+import emailjs from '@emailjs/browser';
 const value = ref(0)
 // const color = computed(() => {
 //     switch (value.value) {
@@ -186,6 +189,7 @@ const value = ref(0)
 //         default: return 'teal'
 //     }
 // })
+
 onBeforeMount(() => {
     theme.global.name.value = 'light';
     customClass.value = 'bg-color';
@@ -193,6 +197,10 @@ onBeforeMount(() => {
   userDetails.personal.description = userDetails.personal.description.replace('[YEAR2]', calculateYears(5,2018));
 });
 const theme = useTheme()
+const clientName = ref('');
+const clientMessage = ref('');
+const clientEmail = ref('');
+
 const goTo = useGoTo()
 const scrollTo = (componentKey: keyof typeof cards) => {
     const componentElement = cards[componentKey]?.$el  // Get the component's element
@@ -215,7 +223,25 @@ const options = computed(() => ({
     easing: easing.value,
     offset: offset.value,
 }))
-
+const sendEmail = () =>{
+        emailjs.send(
+        import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
+        {
+            from_name : clientName.value,
+            to_name : userDetails.personal.name,
+            from_email: clientEmail.value,
+            to_email: userDetails.personal.email,
+            message: clientMessage.value
+        },
+        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
+    ).then((response : any) => {
+      console.log('Email sent successfully!', response);
+    }).catch((error : any) => {
+      console.error('Failed to send email', error);
+    });
+    
+}
 const themeIcon = ref('');
 const customClass = ref('');
 customClass.value = !theme.global.current.value.dark ? 'bg-color' : '';

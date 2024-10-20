@@ -224,6 +224,7 @@ const userDetails = {
         includes Enovia customization and development, 3DExperience upgrade and migration 
         projects, widget development, and platform installation and configuration.</div>
         `,
+        email: 'jayarajkannan95@gmail.com'
 
     },
     certification:[

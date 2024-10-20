@@ -118,27 +118,29 @@
             </v-card>
             <v-card :ref="instance => cards.connect = instance" class="rounded-lg ma-1" :class="customClass"
                 variant="flat" title="💓 Connect with me!">
-                <v-card-text >
+                <v-card-text>
                     <v-card variant="flat" class="pa-2">
                         <form @submit.prevent="sendEmail">
-                            <v-text-field max-width="350" required v-model="clientName" class="mx-auto" density="compact" menu-icon="" placeholder="your name"
-                                        label="name" clearable prepend-inner-icon="mdi-account"
-                                        theme="light" variant="solo" auto-select-first item-props rounded>
-        
-                                    </v-text-field>
-                                    <v-text-field max-width="350" required type="email" v-model="clientEmail" class="mx-auto" density="compact" menu-icon="" placeholder="your name"
-                                        label="email" clearable prepend-inner-icon="mdi-email"
-                                        theme="light" variant="solo" auto-select-first item-props rounded>
-        
-                                    </v-text-field>
-                                    <v-textarea max-width="350" required v-model="clientMessage" class="mx-auto" rows="2" density="compact" menu-icon="" placeholder="your name"
-                                        label="message" clearable prepend-inner-icon="mdi mdi-message-text"
-                                         theme="light" variant="solo" auto-select-first item-props
-                                        rounded></v-textarea>
-                                    <v-btn class="mx-auto" type="submit" min-width="300" rounded="lg" color="#8E24AA" 
-                                        block>send</v-btn>
-                                    </form>
-                   </v-card>
+                            <v-text-field max-width="350" required v-model="clientName" class="mx-auto"
+                                density="compact" menu-icon="" placeholder="your name" label="name" clearable
+                                prepend-inner-icon="mdi-account" theme="light" variant="solo" auto-select-first
+                                item-props rounded>
+
+                            </v-text-field>
+                            <v-text-field max-width="350" required type="email" v-model="clientEmail" class="mx-auto"
+                                density="compact" menu-icon="" placeholder="your name" label="email" clearable
+                                prepend-inner-icon="mdi-email" theme="light" variant="solo" auto-select-first item-props
+                                rounded>
+
+                            </v-text-field>
+                            <v-textarea max-width="350" required v-model="clientMessage" class="mx-auto" rows="2"
+                                density="compact" menu-icon="" placeholder="your name" label="message" clearable
+                                prepend-inner-icon="mdi mdi-message-text" theme="light" variant="solo" auto-select-first
+                                item-props rounded></v-textarea>
+                            <v-btn class="mx-auto" type="submit" min-width="300" rounded="lg" color="#8E24AA"
+                                block>send</v-btn>
+                        </form>
+                    </v-card>
                 </v-card-text>
             </v-card>
             <template v-slot:actions>
@@ -176,7 +178,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed ,onBeforeMount} from "vue";
+import { ref, computed, onBeforeMount } from "vue";
 import userDetails from "../resources/profile";
 import { useTheme, useGoTo } from 'vuetify';
 import emailjs from '@emailjs/browser';
@@ -193,8 +195,8 @@ const value = ref(0)
 onBeforeMount(() => {
     theme.global.name.value = 'light';
     customClass.value = 'bg-color';
-  userDetails.personal.description = userDetails.personal.description.replace('[YEAR1]', calculateYears(5,2016));
-  userDetails.personal.description = userDetails.personal.description.replace('[YEAR2]', calculateYears(5,2018));
+    userDetails.personal.description = userDetails.personal.description.replace('[YEAR1]', calculateYears(5, 2016));
+    userDetails.personal.description = userDetails.personal.description.replace('[YEAR2]', calculateYears(5, 2018));
 });
 const theme = useTheme()
 const clientName = ref('');
@@ -223,24 +225,24 @@ const options = computed(() => ({
     easing: easing.value,
     offset: offset.value,
 }))
-const sendEmail = () =>{
-        emailjs.send(
+const sendEmail = () => {
+    emailjs.send(
         import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
         {
-            from_name : clientName.value,
-            to_name : userDetails.personal.name,
+            from_name: clientName.value,
+            to_name: userDetails.personal.name,
             from_email: clientEmail.value,
             to_email: userDetails.personal.email,
             message: clientMessage.value
         },
         import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
-    ).then((response : any) => {
-      console.log('Email sent successfully!', response);
-    }).catch((error : any) => {
-      console.error('Failed to send email', error);
+    ).then((response: any) => {
+        console.log('Email sent successfully!', response);
+    }).catch((error: any) => {
+        console.error('Failed to send email', error);
     });
-    
+
 }
 const themeIcon = ref('');
 const customClass = ref('');
@@ -248,14 +250,14 @@ customClass.value = !theme.global.current.value.dark ? 'bg-color' : '';
 const projectPanel = ref<string[]>(['digital_wedding']);
 themeIcon.value = theme.global.current.value.dark ? 'mdi mdi-weather-night' : 'mdi mdi-white-balance-sunny';
 const toggleTheme = () => {
-const isDarkMode = theme.global.current.value.dark;
+    const isDarkMode = theme.global.current.value.dark;
 
- // Toggle theme name and icon
-theme.global.name.value = isDarkMode ? 'light' : 'dark';
-themeIcon.value = isDarkMode ? 'mdi mdi-weather-night' : 'mdi mdi-white-balance-sunny';
-customClass.value = isDarkMode ? 'bg-color' : '';
+    // Toggle theme name and icon
+    theme.global.name.value = isDarkMode ? 'light' : 'dark';
+    themeIcon.value = isDarkMode ? 'mdi mdi-weather-night' : 'mdi mdi-white-balance-sunny';
+    customClass.value = isDarkMode ? 'bg-color' : '';
 }
-function calculateYears(month: number,year:number){
+function calculateYears(month: number, year: number) {
     const currentDate: Date = new Date();
     const currentYear: number = currentDate.getFullYear();
     const currentMonth: number = currentDate.getMonth() + 1; // Months are zero-indexed, so add 1
@@ -271,7 +273,7 @@ function calculateYears(month: number,year:number){
     }
 
     // Calculate the total difference in years as a decimal
-    const totalYears:number = yearDifference + monthDifference / 12;
+    const totalYears: number = yearDifference + monthDifference / 12;
 
     // Return the result as a string with one decimal precision
     return totalYears.toFixed(1);
@@ -282,21 +284,41 @@ function calculateYears(month: number,year:number){
     z-index: 1000;
     /* Adjust the z-index if necessary */
 }
+
 /* Waving animation */
 @keyframes wave {
-  0% { transform: rotate(0deg); }
-  20% { transform: rotate(14deg); }
-  40% { transform: rotate(-8deg); }
-  60% { transform: rotate(14deg); }
-  80% { transform: rotate(-4deg); }
-  100% { transform: rotate(0deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    20% {
+        transform: rotate(14deg);
+    }
+
+    40% {
+        transform: rotate(-8deg);
+    }
+
+    60% {
+        transform: rotate(14deg);
+    }
+
+    80% {
+        transform: rotate(-4deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
 }
 
 .waving-hand {
-  display: inline-block;
-  animation: wave 1.5s infinite;
-  transform-origin: 70% 70%; /* Adjust the origin for a more natural waving motion */
+    display: inline-block;
+    animation: wave 1.5s infinite;
+    transform-origin: 70% 70%;
+    /* Adjust the origin for a more natural waving motion */
 }
+
 .v-layout {
     display: flex;
     flex-direction: column;

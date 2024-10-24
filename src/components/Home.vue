@@ -119,7 +119,14 @@
             <v-card :ref="instance => cards.connect = instance" class="rounded-lg ma-1" :class="customClass"
                 variant="flat" title="💓 Connect with me!">
                 <v-card-text>
-                    <v-card variant="flat" class="pa-2">
+                    <v-card v-show="!isEmailSent()" variant="flat" class="pa-2 align-center justify-center">
+                        <v-row justify="center">
+                            <v-col class="text-center">
+                                <p class="text-subtitle-2"><span>let's collabrate !</span></p>
+                            </v-col>
+                        </v-row>
+                    </v-card>
+                    <v-card  v-show="!isEmailSent()" variant="flat" class="pa-2">
                         <form @submit.prevent="sendEmail">
                             <v-text-field max-width="350" required v-model="clientName" class="mx-auto"
                                 density="compact" menu-icon="" placeholder="your name" label="name" clearable
@@ -137,9 +144,19 @@
                                 density="compact" menu-icon="" placeholder="your name" label="message" clearable
                                 prepend-inner-icon="mdi mdi-message-text" theme="light" variant="solo" auto-select-first
                                 item-props rounded></v-textarea>
-                            <v-btn class="mx-auto" type="submit" min-width="300" rounded="lg" color="#8E24AA"
+                            <v-btn class="mx-auto gradient-btn" type="submit" min-width="300" rounded="lg" color="#f0556b"
                                 block>send</v-btn>
                         </form>
+                    </v-card>
+                    <v-card v-if="isEmailSent()" variant="flat" class="pt-4 pb-4 d-flex justify-center align-center">
+                        <v-row justify="center">
+                            <v-col class="pa-2 text-center">
+                                <span class="pa-1 text-caption">i got your message!</span>
+                                <v-img src="../assets/images/handshake.gif" alt="Handshake GIF"  aspect-ratio="1" 
+                                height="80"></v-img>
+                                <span class="pa-1 text-caption">will connect you soon ✌🏻!</span>
+                            </v-col>
+                        </v-row>
                     </v-card>
                 </v-card-text>
             </v-card>
@@ -182,6 +199,7 @@ import { ref, computed, onBeforeMount } from "vue";
 import userDetails from "../resources/profile";
 import { useTheme, useGoTo } from 'vuetify';
 import emailjs from '@emailjs/browser';
+import { toast, type ToastOptions } from 'vue3-toastify';
 const value = ref(0)
 // const color = computed(() => {
 //     switch (value.value) {
@@ -202,7 +220,16 @@ const theme = useTheme()
 const clientName = ref('');
 const clientMessage = ref('');
 const clientEmail = ref('');
-
+const isEmailSent = () => {
+    const storedValue = localStorage.getItem('email-sent');
+    return storedValue ? JSON.parse(storedValue) : false;
+}
+const showSuccessToast = (msg : string) =>{
+    toast(msg, {
+    autoClose: 2500,
+    position: toast.POSITION.TOP_RIGHT,
+  } as ToastOptions);
+};
 const goTo = useGoTo()
 const scrollTo = (componentKey: keyof typeof cards) => {
     const componentElement = cards[componentKey]?.$el  // Get the component's element
@@ -238,11 +265,14 @@ const sendEmail = () => {
         },
         import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
     ).then((response: any) => {
+        //TODO
+        localStorage.setItem('email-sent',"true");
+        showSuccessToast("got your message, will connect you soon 🫡!")
         console.log('Email sent successfully!', response);
     }).catch((error: any) => {
         console.error('Failed to send email', error);
     });
-
+    
 }
 const themeIcon = ref('');
 const customClass = ref('');
@@ -284,7 +314,9 @@ function calculateYears(month: number, year: number) {
     z-index: 1000;
     /* Adjust the z-index if necessary */
 }
-
+.gradient-btn:hover {
+  background: linear-gradient(45deg, #ff3a4a, #ffb0bc);
+}
 /* Waving animation */
 @keyframes wave {
     0% {
@@ -393,5 +425,65 @@ function calculateYears(month: number, year: number) {
     .project-link {
         padding-left: 50px !important;
     }
+}
+.handshake-container {
+  position: relative;
+  width: 200px;
+  height: 100px;
+  margin: 20px auto;
+}
+
+.hand {
+  width: 50px;
+  height: 50px;
+  background-color: #f1c40f; /* Hand color */
+  border-radius: 10px;
+  position: absolute;
+}
+
+.left-hand {
+  left: 0;
+  animation: shakeLeft 1.5s infinite ease-in-out;
+}
+
+.right-hand {
+  right: 0;
+  animation: shakeRight 1.5s infinite ease-in-out;
+}
+
+@keyframes shakeLeft {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(30px);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  75% {
+    transform: translateX(30px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes shakeRight {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-30px);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  75% {
+    transform: translateX(-30px);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
     <v-container class="pa-0" id="goto-container">
         <v-card :ref="instance => cards.aboutme = instance" class="rounded-xl ma-1" variant="flat" max-width="100%">
-            <v-img src="../assets/images/banner.jpg" alt="Banner Image">
+            <v-img src="../assets/images/banner.jpg" loading="lazy" alt="Banner Image">
             </v-img>
             <v-fab active class="ms-4 mr-1" :icon="themeIcon" location="bottom end" size="x-small" absolute offset
                 @click="toggleTheme"></v-fab>
@@ -35,21 +35,25 @@
                     <v-row class="ma-1">
                         <v-col class="ma-0 pt-0 pb-0" v-for="(tool, index) in userDetails.tool" :key="index" cols="12"
                             sm="12" md="4" lg="2">
-                            <v-list class="rounded-pill mb-1">
-                                <v-list-item :title="tool.title">
 
-                                    <template v-slot:prepend>
-                                        <v-avatar rounded="0">
-                                            <v-img :src="tool.prependAvatar"></v-img>
-                                        </v-avatar>
-                                    </template>
-                                    <!-- <template v-slot:subtitle>
+                            <v-hover v-slot="{ isHovering, props }">
+                                <v-list class="rounded-pill mb-1" :class="{ 'on-hover': isHovering }"
+                                    :elevation="isHovering ? 4 : 0" v-bind="props">
+                                    <v-list-item :title="tool.title">
+
+                                        <template v-slot:prepend>
+                                            <v-avatar rounded="0">
+                                                <v-img :src="tool.prependAvatar" :alt="tool.title"
+                                                    loading="lazy"></v-img>
+                                            </v-avatar>
+                                        </template>
+                                        <!-- <template v-slot:subtitle>
                                 <div v-html="tool.subtitle"></div>
                             </template> -->
 
-                                </v-list-item>
-
-                            </v-list>
+                                    </v-list-item>
+                                </v-list>
+                            </v-hover>
                         </v-col>
                     </v-row>
 
@@ -60,25 +64,24 @@
                 <v-card-text>
                     <v-row dense>
                         <v-col v-for="(company, index) in userDetails.experience" :key="index" cols="12" md="6">
-                            <v-card class="rounded-lg exp" variant="flat" :title="company.companyName"
-                                :subtitle="company.date">
-                                <template v-slot:prepend>
-                                    <v-avatar size="50" rounded="0">
-                                        <v-img :src="company.logo"></v-img>
-                                    </v-avatar>
-                                </template>
-                                <template v-slot:text>
-                                    <v-chip size="x-small" v-for="(tech, index) in company.skill" :key="index"
-                                        class="ma-1">
-                                        {{ tech }}
-                                    </v-chip>
-                                </template>
-                                <template v-slot:append>
-                                    <v-btn icon variant="plain">
-                                        <v-icon color="#ffff">mdi-open-in-new</v-icon>
-                                    </v-btn>
-                                </template>
-                            </v-card>
+                            <v-hover v-slot="{ isHovering, props }">
+                                <v-card class="rounded-lg exp" variant="flat" :title="company.companyName"
+                                    :subtitle="company.date" :class="{ 'on-hover': isHovering }"
+                                    :elevation="isHovering ? 4 : 0" v-bind="props">
+                                    <template v-slot:prepend>
+                                        <v-avatar size="50" rounded="0">
+                                            <v-img :src="company.logo" loading="lazy"
+                                                :alt="company.companyName"></v-img>
+                                        </v-avatar>
+                                    </template>
+                                    <template v-slot:text>
+                                        <v-chip size="x-small" v-for="(tech, index) in company.skill" :key="index"
+                                            class="ma-1">
+                                            {{ tech }}
+                                        </v-chip>
+                                    </template>
+                                </v-card>
+                            </v-hover>
                         </v-col>
                     </v-row>
                 </v-card-text>
@@ -101,9 +104,30 @@
                                         <strong>{{ project.title }}</strong>
                                     </v-col>
                                     <v-col class="project-link" cols="2" md="1" sm="1">
-                                        <v-btn icon variant="plain">
-                                            <v-icon>mdi-open-in-new</v-icon>
-                                        </v-btn>
+                                        <v-menu>
+                                            <template v-slot:activator="{ props: menu }">
+                                                        <v-btn icon variant="plain" v-bind="menu">
+                                                            <v-icon>mdi mdi-dots-vertical</v-icon>
+                                                        </v-btn>
+                                            </template>
+                                            <v-list>
+                                                <v-list-item class="pa-0">
+                                                    <v-list-item-title>
+                                                        <v-btn icon variant="plain">
+                                                            <v-icon>mdi mdi-github</v-icon>
+                                                        </v-btn>
+                                                    </v-list-item-title>
+                                                </v-list-item>
+                                                <v-list-item class="pa-0">
+                                                    <v-list-item-title>
+                                                        <v-btn icon variant="plain">
+                                                            <v-icon>mdi mdi-information-slab-symbol</v-icon>
+                                                        </v-btn>
+                                                    </v-list-item-title>
+                                                </v-list-item>
+                                            </v-list>
+                                        </v-menu>
+
                                     </v-col>
                                 </v-row>
                             </v-expansion-panel-title>
@@ -111,7 +135,6 @@
                             <v-expansion-panel-text>
                                 <v-card-text>{{ project.description }}</v-card-text>
                             </v-expansion-panel-text>
-
                         </v-expansion-panel>
                     </v-expansion-panels>
                 </v-card-text>
@@ -126,7 +149,7 @@
                             </v-col>
                         </v-row>
                     </v-card>
-                    <v-card  v-show="!isEmailSent()" variant="flat" class="pa-2">
+                    <v-card v-show="!isEmailSent()" variant="flat" class="pa-2">
                         <form @submit.prevent="sendEmail">
                             <v-text-field max-width="350" required v-model="clientName" class="mx-auto"
                                 density="compact" menu-icon="" placeholder="your name" label="name" clearable
@@ -144,16 +167,16 @@
                                 density="compact" menu-icon="" placeholder="your name" label="message" clearable
                                 prepend-inner-icon="mdi mdi-message-text" theme="light" variant="solo" auto-select-first
                                 item-props rounded></v-textarea>
-                            <v-btn class="mx-auto gradient-btn" type="submit" min-width="300" rounded="lg" color="#f0556b"
-                                block>send</v-btn>
+                            <v-btn class="mx-auto gradient-btn" type="submit" min-width="300" rounded="lg"
+                                color="#f0556b" block>send</v-btn>
                         </form>
                     </v-card>
                     <v-card v-if="isEmailSent()" variant="flat" class="pt-4 pb-4 d-flex justify-center align-center">
                         <v-row justify="center">
                             <v-col class="pa-2 text-center">
                                 <span class="pa-1 text-caption">i got your message!</span>
-                                <v-img src="../assets/images/handshake.gif" alt="Handshake GIF"  aspect-ratio="1" 
-                                height="80"></v-img>
+                                <v-img src="../assets/images/handshake.gif" loading="lazy" alt="Handshake GIF"
+                                    aspect-ratio="1" height="80"></v-img>
                                 <span class="pa-1 text-caption">will connect you soon ✌🏻!</span>
                             </v-col>
                         </v-row>

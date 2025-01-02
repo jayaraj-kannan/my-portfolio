@@ -37,7 +37,7 @@
                             sm="12" md="4" lg="2">
 
                             <v-hover v-slot="{ isHovering, props }">
-                                <v-list class="rounded-pill mb-1" :class="{ 'on-hover': isHovering }"
+                                <v-list class="rounded-pill mb-1 cursor-pointer" :class="{ 'on-hover': isHovering }"
                                     :elevation="isHovering ? 4 : 0" v-bind="props">
                                     <v-list-item :title="tool.title">
 
@@ -65,7 +65,7 @@
                     <v-row dense>
                         <v-col v-for="(company, index) in userDetails.experience" :key="index" cols="12" md="6">
                             <v-hover v-slot="{ isHovering, props }">
-                                <v-card class="rounded-lg exp" variant="flat" :title="company.companyName"
+                                <v-card class="rounded-lg exp cursor-pointer" variant="flat" :title="company.companyName"
                                     :subtitle="company.date" :class="{ 'on-hover': isHovering }"
                                     :elevation="isHovering ? 4 : 0" v-bind="props">
                                     <template v-slot:prepend>
@@ -104,27 +104,29 @@
                                         <strong>{{ project.title }}</strong>
                                     </v-col>
                                     <v-col class="project-link" cols="2" md="1" sm="1">
-                                        <v-menu>
+                                        <v-menu location="start">
                                             <template v-slot:activator="{ props: menu }">
-                                                        <v-btn icon variant="plain" v-bind="menu">
-                                                            <v-icon>mdi mdi-dots-vertical</v-icon>
-                                                        </v-btn>
+                                                <v-btn icon variant="plain" v-bind="menu">
+                                                    <v-icon>mdi mdi-dots-vertical</v-icon>
+                                                </v-btn>
                                             </template>
-                                            <v-list>
-                                                <v-list-item class="pa-0">
-                                                    <v-list-item-title>
-                                                        <v-btn icon variant="plain">
-                                                            <v-icon>mdi mdi-github</v-icon>
-                                                        </v-btn>
-                                                    </v-list-item-title>
-                                                </v-list-item>
-                                                <v-list-item class="pa-0">
-                                                    <v-list-item-title>
-                                                        <v-btn icon variant="plain">
-                                                            <v-icon>mdi mdi-information-slab-symbol</v-icon>
-                                                        </v-btn>
-                                                    </v-list-item-title>
-                                                </v-list-item>
+                                            <v-list class="pa-0 rounded-xl">
+                                                <v-list-item v-if="project.git" :href="project.git" target="_blank">
+                                                    <template #prepend>
+                                                        <v-icon color="#181717">mdi mdi-github</v-icon>
+                                                        <span class="pl-2">Github</span>
+                                                    </template>
+                                                    </v-list-item>
+                                                <v-list-item v-if="project.live" :href="project.live" target="_blank">
+                                                    <template #prepend>
+                                                        <v-icon color="#4285F4">mdi mdi-web</v-icon>
+                                                        <span class="pl-2">Live Demo</span>
+                                                    </template></v-list-item>
+                                                <v-list-item v-if="project.blog" :href="project.blog" target="_blank">
+                                                    <template #prepend>
+                                                        <v-icon color="#00AB6C">mdi mdi-size-m</v-icon>
+                                                        <span class="pl-2">Blog</span>
+                                                    </template></v-list-item>
                                             </v-list>
                                         </v-menu>
 
@@ -133,7 +135,15 @@
                             </v-expansion-panel-title>
 
                             <v-expansion-panel-text>
-                                <v-card-text>{{ project.description }}</v-card-text>
+                                <v-card-text>
+                                    <span>{{ project.description }}</span>
+                                    <div class="mt-2">
+                                    <v-chip size="small" v-for="(tech, index) in project.tech" :key="index"
+                                        class="mr-1">
+                                        {{ tech }}
+                                    </v-chip>
+                                    </div>
+                                </v-card-text>
                             </v-expansion-panel-text>
                         </v-expansion-panel>
                     </v-expansion-panels>
@@ -247,11 +257,11 @@ const isEmailSent = () => {
     const storedValue = localStorage.getItem('email-sent');
     return storedValue ? JSON.parse(storedValue) : false;
 }
-const showSuccessToast = (msg : string) =>{
+const showSuccessToast = (msg: string) => {
     toast(msg, {
-    autoClose: 2500,
-    position: toast.POSITION.TOP_RIGHT,
-  } as ToastOptions);
+        autoClose: 2500,
+        position: toast.POSITION.TOP_RIGHT,
+    } as ToastOptions);
 };
 const goTo = useGoTo()
 const scrollTo = (componentKey: keyof typeof cards) => {
@@ -289,18 +299,18 @@ const sendEmail = () => {
         import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
     ).then((response: any) => {
         //TODO
-        localStorage.setItem('email-sent',"true");
+        localStorage.setItem('email-sent', "true");
         showSuccessToast("got your message, will connect you soon 🫡!")
         console.log('Email sent successfully!', response);
     }).catch((error: any) => {
         console.error('Failed to send email', error);
     });
-    
+
 }
 const themeIcon = ref('');
 const customClass = ref('');
 customClass.value = !theme.global.current.value.dark ? 'bg-color' : '';
-const projectPanel = ref<string[]>(['digital_wedding']);
+const projectPanel = ref<string[]>(['sem_app']);
 themeIcon.value = theme.global.current.value.dark ? 'mdi mdi-weather-night' : 'mdi mdi-white-balance-sunny';
 const toggleTheme = () => {
     const isDarkMode = theme.global.current.value.dark;
@@ -337,9 +347,11 @@ function calculateYears(month: number, year: number) {
     z-index: 1000;
     /* Adjust the z-index if necessary */
 }
+
 .gradient-btn:hover {
-  background: linear-gradient(45deg, #ff3a4a, #ffb0bc);
+    background: linear-gradient(45deg, #ff3a4a, #ffb0bc);
 }
+
 /* Waving animation */
 @keyframes wave {
     0% {
@@ -449,64 +461,74 @@ function calculateYears(month: number, year: number) {
         padding-left: 50px !important;
     }
 }
+
 .handshake-container {
-  position: relative;
-  width: 200px;
-  height: 100px;
-  margin: 20px auto;
+    position: relative;
+    width: 200px;
+    height: 100px;
+    margin: 20px auto;
 }
 
 .hand {
-  width: 50px;
-  height: 50px;
-  background-color: #f1c40f; /* Hand color */
-  border-radius: 10px;
-  position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: #f1c40f;
+    /* Hand color */
+    border-radius: 10px;
+    position: absolute;
 }
 
 .left-hand {
-  left: 0;
-  animation: shakeLeft 1.5s infinite ease-in-out;
+    left: 0;
+    animation: shakeLeft 1.5s infinite ease-in-out;
 }
 
 .right-hand {
-  right: 0;
-  animation: shakeRight 1.5s infinite ease-in-out;
+    right: 0;
+    animation: shakeRight 1.5s infinite ease-in-out;
 }
 
 @keyframes shakeLeft {
-  0% {
-    transform: translateX(0);
-  }
-  25% {
-    transform: translateX(30px);
-  }
-  50% {
-    transform: translateX(0);
-  }
-  75% {
-    transform: translateX(30px);
-  }
-  100% {
-    transform: translateX(0);
-  }
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(30px);
+    }
+
+    50% {
+        transform: translateX(0);
+    }
+
+    75% {
+        transform: translateX(30px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
 }
 
 @keyframes shakeRight {
-  0% {
-    transform: translateX(0);
-  }
-  25% {
-    transform: translateX(-30px);
-  }
-  50% {
-    transform: translateX(0);
-  }
-  75% {
-    transform: translateX(-30px);
-  }
-  100% {
-    transform: translateX(0);
-  }
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-30px);
+    }
+
+    50% {
+        transform: translateX(0);
+    }
+
+    75% {
+        transform: translateX(-30px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
 }
 </style>

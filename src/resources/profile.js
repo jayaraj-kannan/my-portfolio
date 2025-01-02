@@ -234,6 +234,19 @@ const userDetails = {
     ],
     projects:[
         {
+            title:'Smart Expense Manager - Powered by chatbot AI',
+            key:'sem_app',
+            icon:'mdi mdi-semantic-web',
+            git:'https://github.com/jayaraj-kannan/Smart-Expense-Manager.git',
+            blog:`https://medium.com/@jrajfx/smart-expense-manager-powered-by-chatbot-ai-9a5c19618a25`,
+            live:'https://sem-app-800933239910.us-central1.run.app/',
+            description:`Managing personal or business expenses can often feel like navigating a financial labyrinth. Receipts pile up, 
+            categorization takes hours, and manual errors sneak in. Enter the Smart Expense Manager — a game-changing tool designed to automate and 
+            simplify expense management using cutting-edge AI and cloud technologies. In this blog, we’ll explore how the Smart Expense Manager empowers users to effortlessly track, 
+            categorize, and analyze expenses, offering insights for better financial decision-making.`,
+            tech:[`Vue.js`,`Vuetify`,`Gemini 2.O flash`,`Google Cloud`,`Firebase DB`,`Firebase Authentication`,`Firebase Admin`]
+        },
+        {
             title:'Digital Invitation',
             key:'digital_wedding',
             icon:'mdi mdi-semantic-web',
@@ -243,39 +256,37 @@ const userDetails = {
             It features an event day countdown, event details, a "Save the Date" option for adding the 
             event to Apple Calendar or Google Calendar, event venue map integration, and a form for collecting 
             guest attendance details.`,
-            tech:'HTML5,CSS,google forms'
+            tech:['HTML5','CSS','google forms']
         },
         {
             title:'Expense Manager',
             key:'expense_manager',
             icon:'mdi mdi-api',
             git:'https://github.com/jayaraj-kannan/expensive_report',
-            live:'https://github.com/jayaraj-kannan/expensive_report',
             description:`I've developed an API for managing user details using Spring Security. 
             The API includes two modules: User and Expense. In the User module, 
             there are two roles: admin and user. Admins have full CRUD (Create, Read, Update, Delete) capabilities, 
             while all users can create and track their expenses based on categories. 
             Users can also generate reports to track expenses on a yearly, monthly, or weekly basis. 
             This project is currently under continuous development.`,
-            tech:'j2EE,Spring Boot,Spring Security,Postgres DB,OAuth,microservices,REST Api'
+            tech:['j2EE','Spring Boot','Spring Security','Postgres DB','OAuth','microservices','REST Api']
         },
         {
             title:'Portfolio',
             key:'portfolio',
             icon:'mdi mdi-semantic-web',
-            git:'https://github.com/jayaraj-kannan/my-portfolio',
-            live:'https://github.com/jayaraj-kannan/expensive_report',
+            git:'https://github.com/jayaraj-kannan/my-portfolio.git',
+            live:'https://jayaraj-kannan.github.io/my-portfolio/',
             description:`developed a portfolio using vue with vuetify, customized some style and componets.`,
-            tech:'Vuejs,Vuetify,Javascript,CSS,HTML5'
+            tech:['Vuejs','Vuetify','Javascript','CSS','HTML5','emailjs']
         },
         {
             title:'Image Editor',
             key:'imagee_editor',
             icon:'mdi mdi-semantic-web',
-            git:'https://github.com/jayaraj-kannan/my-portfolio',
-            live:'https://github.com/jayaraj-kannan/expensive_report',
-            description:`developed a portfolio using vue with vuetify, customized some style and componets.`,
-            tech:'Vuejs,Vuetify,Javascript,CSS,HTML5'
+            git:'https://github.com/jayaraj-kannan/Image-Editor.git',
+            description:`developed a image editor using React js, convert the image size to prefered size.`,
+            tech:['Reactjs','Javascript','CSS','HTML5']
         }
     ],
     links: {

@@ -139,7 +139,7 @@
                                     <span>{{ project.description }}</span>
                                     <div class="mt-2">
                                     <v-chip size="small" v-for="(tech, index) in project.tech" :key="index"
-                                        class="mr-1">
+                                        class="ma-1 ml-0">
                                         {{ tech }}
                                     </v-chip>
                                     </div>

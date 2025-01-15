@@ -224,7 +224,8 @@ const userDetails = {
         includes Enovia customization and development, 3DExperience upgrade and migration 
         projects, widget development, and platform installation and configuration.</div>
         `,
-        email: 'jayarajkannan95@gmail.com'
+        email: 'jayarajkannan95@gmail.com',
+        support:'https://buymeacoffee.com/jayarajkannan'
 
     },
     certification:[
@@ -234,9 +235,10 @@ const userDetails = {
     ],
     projects:[
         {
-            title:'Smart Expense Manager - Powered by chatbot AI',
+            title:'Smart Expense Manager - AI chatbot',
             key:'sem_app',
-            icon:'mdi mdi-semantic-web',
+            icon:'mdi mdi-web',
+            cover: new URL(`../assets/images/sem-app.png`,import.meta.url).href,
             git:'https://github.com/jayaraj-kannan/Smart-Expense-Manager.git',
             blog:`https://medium.com/@jrajfx/smart-expense-manager-powered-by-chatbot-ai-9a5c19618a25`,
             live:'https://sem-app-800933239910.us-central1.run.app/',
@@ -249,7 +251,8 @@ const userDetails = {
         {
             title:'Digital Invitation',
             key:'digital_wedding',
-            icon:'mdi mdi-semantic-web',
+            icon:'mdi mdi-web',
+            cover: new URL(`../assets/images/digital-invite.png`,import.meta.url).href,
             git:'https://github.com/jayaraj-kannan/digital-wedding-invitation',
             live:'https://jayaraj-kannan.github.io/digital-wedding-invitation/',
             description:`I developed a responsive website for my wedding event. 
@@ -274,7 +277,8 @@ const userDetails = {
         {
             title:'Portfolio',
             key:'portfolio',
-            icon:'mdi mdi-semantic-web',
+            icon:'mdi mdi-web',
+            cover: new URL(`../assets/images/portfolio-app.png`,import.meta.url).href,
             git:'https://github.com/jayaraj-kannan/my-portfolio.git',
             live:'https://jayaraj-kannan.github.io/my-portfolio/',
             description:`developed a portfolio using vue with vuetify, customized some style and componets.`,
@@ -283,19 +287,39 @@ const userDetails = {
         {
             title:'Image Editor',
             key:'imagee_editor',
-            icon:'mdi mdi-semantic-web',
+            icon:'mdi mdi-web',
             git:'https://github.com/jayaraj-kannan/Image-Editor.git',
             description:`developed a image editor using React js, convert the image size to prefered size.`,
             tech:['Reactjs','Javascript','CSS','HTML5']
         }
     ],
-    links: {
-        github: 'https://github.com/jayaraj-kannan',
-        linkedin: 'https://www.linkedin.com/in/jayaraj-kannan-58922b111/',
-        facebook: 'https://www.facebook.com/jrajfx/',
-        instagram: 'https://www.instagram.com/jayaraj_creator',
-        twitter: 'https://twitter.com/jrajfx'
-    },
+    socialConnect: [
+        {
+          link: 'https://github.com/jayaraj-kannan',
+          icon: 'mdi mdi-github',
+          color: '#181717'
+        },
+        {
+          link: 'https://www.linkedin.com/in/jayaraj-kannan-58922b111/',
+          icon: 'mdi mdi-linkedin',
+          color: '#0077B5'
+        },
+        {
+          link: 'https://www.facebook.com/jrajfx/',
+          icon: 'mdi mdi-facebook',
+          color: '#1877F2'
+        },
+        {
+          link: 'https://www.instagram.com/jayaraj_creator',
+          icon: 'mdi mdi-instagram',
+          color: '#ff4868'
+        },
+        {
+          link: 'https://twitter.com/jrajfx',
+          icon: 'mdi mdi-twitter',
+          color: '#1DA1F2'
+        }
+      ],
     role: 'Full stack Java Developer ● Enovia Developer'
 
 }

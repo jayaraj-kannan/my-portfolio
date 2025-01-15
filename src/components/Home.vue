@@ -10,6 +10,10 @@
                 <v-list-item>
                     <template v-slot:title>
                         <div sm="12" md="4" lg="2" v-html="userDetails.personal.welcome"></div>
+                        <a class="pr-2" v-for="(social, index) in userDetails.socialConnect" :href="social.link"
+                            target="_blank" :key="index">
+                            <v-icon :color="social.color">{{ social.icon }}</v-icon>
+                        </a>
                     </template>
                     <template v-slot:prepend>
                         <v-avatar size="130" image="../assets/images/color.png"></v-avatar>
@@ -65,9 +69,9 @@
                     <v-row dense>
                         <v-col v-for="(company, index) in userDetails.experience" :key="index" cols="12" md="6">
                             <v-hover v-slot="{ isHovering, props }">
-                                <v-card class="rounded-lg exp cursor-pointer" variant="flat" :title="company.companyName"
-                                    :subtitle="company.date" :class="{ 'on-hover': isHovering }"
-                                    :elevation="isHovering ? 4 : 0" v-bind="props">
+                                <v-card class="rounded-lg exp cursor-pointer" variant="flat"
+                                    :title="company.companyName" :subtitle="company.date"
+                                    :class="{ 'on-hover': isHovering }" :elevation="isHovering ? 4 : 0" v-bind="props">
                                     <template v-slot:prepend>
                                         <v-avatar size="50" rounded="0">
                                             <v-img :src="company.logo" loading="lazy"
@@ -88,65 +92,37 @@
             </v-card>
             <v-card class="rounded-lg ma-1" :class="customClass" variant="flat" title="🛠️ Projects!">
                 <v-card-text>
-                    <v-expansion-panels elevation="0" v-model="projectPanel" class="rounded-lg" variant="popout">
-                        <v-expansion-panel :value="project.key" v-for="(project, index) in userDetails.projects"
-                            :key="index" eager class="rounded-lg" hide-actions>
-                            <v-expansion-panel-title>
-                                <v-row align="center" class="spacer" no-gutters>
-                                    <v-col cols="3" md="1" sm="2">
-                                        <v-avatar size="50">
-                                            <v-icon class="project-app-icon" size="60">
-                                                {{ project.icon }}
-                                            </v-icon>
-                                        </v-avatar>
-                                    </v-col>
-                                    <v-col class="hidden-xs-only text-left ms-2" cols="6" md="9" sm="3">
-                                        <strong>{{ project.title }}</strong>
-                                    </v-col>
-                                    <v-col class="project-link" cols="2" md="1" sm="1">
-                                        <v-menu location="start">
-                                            <template v-slot:activator="{ props: menu }">
-                                                <v-btn icon variant="plain" v-bind="menu">
-                                                    <v-icon>mdi mdi-dots-vertical</v-icon>
-                                                </v-btn>
-                                            </template>
-                                            <v-list class="pa-0 rounded-xl">
-                                                <v-list-item v-if="project.git" :href="project.git" target="_blank">
-                                                    <template #prepend>
-                                                        <v-icon color="#181717">mdi mdi-github</v-icon>
-                                                        <span class="pl-2">Github</span>
-                                                    </template>
-                                                    </v-list-item>
-                                                <v-list-item v-if="project.live" :href="project.live" target="_blank">
-                                                    <template #prepend>
-                                                        <v-icon color="#4285F4">mdi mdi-web</v-icon>
-                                                        <span class="pl-2">Live Demo</span>
-                                                    </template></v-list-item>
-                                                <v-list-item v-if="project.blog" :href="project.blog" target="_blank">
-                                                    <template #prepend>
-                                                        <v-icon color="#00AB6C">mdi mdi-size-m</v-icon>
-                                                        <span class="pl-2">Blog</span>
-                                                    </template></v-list-item>
-                                            </v-list>
-                                        </v-menu>
+                    <v-row dense>
+                        <v-col v-for="(project, index) in userDetails.projects" :key="index" class="mx-auto d-flex align-stretch" cols="12" md="6">
+                            <v-hover v-slot="{ isHovering, props }">
+                            <v-card class="ml-2 mb-2 mx-auto rounded-xl cursor-pointer" variant="flat" :class="{ 'on-hover': isHovering }" :elevation="isHovering ? 4 : 0" v-bind="props">
+                                <v-img class="mt-2 mr-2 ml-2 rounded-xl" aspect-ratio="1/1" max-height="200"
+                                    :src="project.cover" :alt="project.title" cover>
+                                </v-img>
+                                <v-card-title ><v-icon class="project-app-icon" size="25">{{ project.icon }}</v-icon>
+                                        <span class="text-subtitle-1 pl-1"> {{ project.title }}</span>
+                                   </v-card-title>
 
-                                    </v-col>
-                                </v-row>
-                            </v-expansion-panel-title>
-
-                            <v-expansion-panel-text>
                                 <v-card-text>
                                     <span>{{ project.description }}</span>
                                     <div class="mt-2">
-                                    <v-chip size="small" v-for="(tech, index) in project.tech" :key="index"
-                                        class="ma-1 ml-0">
-                                        {{ tech }}
-                                    </v-chip>
+                                        <v-chip size="small" v-for="(tech, index) in project.tech" :key="index"
+                                            class="ma-1 ml-0">
+                                            {{ tech }}
+                                        </v-chip>
                                     </div>
                                 </v-card-text>
-                            </v-expansion-panel-text>
-                        </v-expansion-panel>
-                    </v-expansion-panels>
+
+                                <v-card-actions>
+                                    <v-spacer></v-spacer>
+                                    <v-btn v-if="project.live" class="rounded-lg" size="small" color="#8e8e8e" :href="project.live" target="_blank" text="Live Demo" variant="flat" prepend-icon="mdi mdi-web"></v-btn>
+                                    <v-btn v-if="project.git" class="rounded-lg" size="small" color="#8e8e8e" :href="project.git" target="_blank" text="Github" variant="flat" prepend-icon="mdi mdi-github"></v-btn>
+                                    <v-btn v-if="project.blog" class="rounded-lg" size="small" color="#8e8e8e" :href="project.blog" target="_blank" text="Blog" variant="flat" prepend-icon="mdi mdi-size-m"></v-btn>
+                                </v-card-actions>
+                            </v-card>
+                        </v-hover>
+                        </v-col>
+                    </v-row>
                 </v-card-text>
             </v-card>
             <v-card :ref="instance => cards.connect = instance" class="rounded-lg ma-1" :class="customClass"

@@ -286,7 +286,6 @@ const sendEmail = () => {
 const themeIcon = ref('');
 const customClass = ref('');
 customClass.value = !theme.global.current.value.dark ? 'bg-color' : '';
-const projectPanel = ref<string[]>(['sem_app']);
 themeIcon.value = theme.global.current.value.dark ? 'mdi mdi-weather-night' : 'mdi mdi-white-balance-sunny';
 const toggleTheme = () => {
     const isDarkMode = theme.global.current.value.dark;
